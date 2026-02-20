@@ -2,14 +2,20 @@
 
 import Image from 'next/image';
 import data from '../data/portfolio.json';
-import { Award, Code2, Github, Linkedin, Mail, ExternalLink ,Menu, X} from 'lucide-react';
-import { motion } from 'framer-motion';      // Added for animations
-import { FileDown } from 'lucide-react'; // Add this to your lucide imports
+import { ChevronDown, ChevronUp, Award, Code2, Github, Linkedin, Mail, ExternalLink, Menu, X, FileDown} from 'lucide-react';
+import { AnimatePresence,motion } from 'framer-motion';      // Added for animations
+
 
 import { useState } from 'react'; // For mobile menu toggle
 
 
 export default function Home() {
+  const [showAllProjects, setShowAllProjects] = useState(false);
+  const [showAllCerts, setShowAllCerts] = useState(false);
+  const [selectedCert, setSelectedCert] = useState<any>(null);
+
+  // Constants
+  const DISPLAY_LIMIT = 6;
   return (
     <main className="min-h-screen bg-[#020617] text-slate-200">
       {/* Navigation Header */}
@@ -19,7 +25,7 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="text-lg font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"
+            className="text-lg font-bold bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"
           >
             {data.name.split(' ')[0]}.dev
           </motion.div>
@@ -94,100 +100,95 @@ export default function Home() {
 </div>
       </section>
 
-      {/* 2. Projects Grid */}
-<section id="projects" className="max-w-6xl mx-auto px-6 py-20">
-  <h2 className="text-2xl font-semibold mb-12 flex items-center gap-4">
-    Recent Work <div className="h-px flex-1 bg-slate-800" />
-  </h2>
+{/* 2. Projects Grid */}
+      <section id="projects" className="max-w-6xl mx-auto px-6 py-20">
+        <h2 className="text-2xl font-semibold mb-12 flex items-center gap-4">
+          Recent Work <div className="h-px flex-1 bg-slate-800" />
+        </h2>
 
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-    {data.projects.map((project, index) => (
-      <div 
-        key={index} 
-        className="group relative flex flex-col rounded-3xl bg-slate-900/40 border border-slate-800 hover:border-blue-500/50 transition-all duration-300 overflow-hidden"
-      >
-        {/* Project Cover Image */}
-        <div className="relative h-48 w-full overflow-hidden">
-          <Image
-            src={project.image || "/api/placeholder/400/200"} // Fallback if image is missing
-            alt={project.title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {data.projects.slice(0, showAllProjects ? undefined : DISPLAY_LIMIT).map((project, index) => (
+            <ProjectCard key={index} project={project} />
+          ))}
         </div>
 
-        {/* Card Content */}
-        <div className="p-8">
-          <h3 className="text-2xl font-bold group-hover:text-blue-400 transition-colors">
-            {project.title}
-          </h3>
-          <p className="mt-4 text-slate-400 leading-relaxed">
-            {project.description}
-          </p>
-          
-          <div className="mt-6 flex flex-wrap gap-2">
-            {project.tech.map((tag, tagIndex) => (
-              <span key={`${tag}-${tagIndex}`} className="px-3 py-1 text-xs font-medium bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20">
-                {tag}
-              </span>
-            ))}
-          </div>
+        {data.projects.length > DISPLAY_LIMIT && (
+          <button 
+            onClick={() => setShowAllProjects(!showAllProjects)}
+            className="mt-12 mx-auto flex items-center gap-2 px-6 py-3 rounded-full border border-slate-800 hover:bg-slate-900 transition-all text-slate-400 hover:text-white"
+          >
+            {showAllProjects ? <>Show Less <ChevronUp /></> : <>Show All Projects <ChevronDown /></>}
+          </button>
+        )}
+      </section>
 
-          {/* Action Icons/Links */}
-          <div className="mt-8 pt-6 border-t border-slate-800 flex items-center gap-6">
-            <a 
-              href={project.link} 
-              target="_blank" 
-              className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors"
-            >
-              <ExternalLink className="w-4 h-4" /> Live Demo
-            </a>
-            <a 
-              href={project.github} 
-              target="_blank" 
-              className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
-            >
-              <Github className="w-4 h-4" /> Source Code
-            </a>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
       {/* 3. Certifications Section */}
-<section id="certifications" className="max-w-6xl mx-auto px-6 py-20">
-  <h2 className="text-2xl font-semibold mb-12 flex items-center gap-4">
-    Certifications <div className="h-px flex-1 bg-slate-800" />
-  </h2>
+      <section id="certifications" className="max-w-6xl mx-auto px-6 py-20">
+        <h2 className="text-2xl font-semibold mb-12 flex items-center gap-4">
+          Certifications <div className="h-px flex-1 bg-slate-800" />
+        </h2>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    {data.certifications.map((cert, index) => (
-      <div 
-        key={index} 
-        className="p-6 rounded-2xl bg-slate-900/20 border border-slate-800 hover:bg-slate-900/60 transition-colors group"
-      >
-        <div className="flex flex-col gap-1">
-          
-          {/* NEW SECTION: Icon + Issuer */}
-          <div className="flex items-center gap-3 mb-2">
-            <Award className="w-5 h-5 text-blue-400" />
-            <span className="text-blue-400 text-xs font-mono tracking-widest uppercase">
-              {cert.issuer}
-            </span>
-          </div>
-
-          <h3 className="text-lg font-bold group-hover:text-white transition-colors">
-            {cert.name}
-          </h3>
-          <p className="text-slate-500 text-sm mt-2">
-            Issued: {cert.date}
-          </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {data.certifications.slice(0, showAllCerts ? undefined : DISPLAY_LIMIT).map((cert, index) => (
+            <div 
+              key={index} 
+              onClick={() => setSelectedCert(cert)}
+              className="flex items-center p-4 rounded-2xl bg-slate-900/30 border border-slate-800 hover:border-blue-500/30 transition-all cursor-pointer"
+            >
+              <div className="relative w-12 h-12 shrink-0 mr-4 rounded-lg overflow-hidden border border-slate-700">
+                <Image src={cert.image} alt={cert.issuer} fill className="object-cover" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-sm font-bold text-white truncate">{cert.title}</h3>
+                <p className="text-xs text-slate-500">{cert.issuer}</p>
+              </div>
+              <ExternalLink className="w-4 h-4 text-slate-600" />
+            </div>
+          ))}
         </div>
-      </div>
-    ))}
-  </div>
-</section>
+
+        {data.certifications.length > DISPLAY_LIMIT && (
+          <button 
+            onClick={() => setShowAllCerts(!showAllCerts)}
+            className="mt-8 mx-auto flex items-center gap-2 text-sm text-slate-500 hover:text-white transition-all"
+          >
+            {showAllCerts ? <ChevronUp /> : <ChevronDown />} {showAllCerts ? "Collapse" : "View More Certificates"}
+          </button>
+        )}
+      </section>
+
+      {/* Certificate Modal Popup */}
+      <AnimatePresence>
+        {selectedCert && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              onClick={() => setSelectedCert(null)}
+              className="absolute inset-0 bg-black/90 backdrop-blur-sm"
+            />
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-4xl w-full bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl"
+            >
+              <button onClick={() => setSelectedCert(null)} className="absolute top-4 right-4 z-10 p-2 bg-black/50 rounded-full hover:bg-red-500/20 text-white transition-all"><X /></button>
+              <div className="relative aspect-video w-full bg-slate-950">
+                <Image src={selectedCert.image} alt="Full Certificate" fill className="object-contain" />
+              </div>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-bold mb-2">{selectedCert.title}</h3>
+                <p className="text-slate-400 mb-6">{selectedCert.issuer} • Issued {selectedCert.date}</p>
+                <a href={selectedCert.verifyLink} target="_blank" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 rounded-full font-bold">Verify Credential <ExternalLink size={18}/></a>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      
+  
+
+
+
      {/* 4. Skills Section - Animated */}
       <section id="skills" className="max-w-6xl mx-auto px-6 py-20">
         <h2 className="text-2xl font-semibold mb-12 flex items-center gap-4">
@@ -272,5 +273,44 @@ export default function Home() {
         <p>© {new Date().getFullYear()} {data.name}. Built with Next.js & Tailwind.</p>
       </footer>
     </main>
+  );
+}
+
+// Sub-component for Project Cards to handle individual description expansion
+function ProjectCard({ project }: { project: any }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div className="group relative flex flex-col rounded-2xl bg-slate-900/40 border border-slate-800 hover:border-blue-500/50 transition-all duration-300 overflow-hidden">
+      <div className="relative h-40 w-full overflow-hidden">
+        <Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+      </div>
+      <div className="p-5 flex flex-col flex-1">
+        <h3 className="text-xl font-bold text-white leading-tight">{project.title}</h3>
+        
+        <div className="relative mt-2">
+          <p className={`text-sm text-slate-400 leading-relaxed transition-all ${!isExpanded && "line-clamp-2"}`}>
+            {project.description}
+          </p>
+          <button 
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="text-xs text-blue-400 mt-1 hover:underline flex items-center gap-1"
+          >
+            {isExpanded ? <>Read Less <ChevronUp size={12}/></> : <>Read More <ChevronDown size={12}/></>}
+          </button>
+        </div>
+        
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {project.tech.map((tag: string, i: number) => (
+            <span key={i} className="px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-400 rounded-md border border-blue-500/20">{tag}</span>
+          ))}
+        </div>
+
+        <div className="mt-auto pt-4 border-t border-slate-800 flex items-center justify-between">
+          <a href={project.link} target="_blank" className="flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-blue-400 transition-colors"><ExternalLink className="w-3.5 h-3.5" /> Demo</a>
+          <a href={project.github} target="_blank" className="flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-white transition-colors"><Github className="w-3.5 h-3.5" /> Source</a>
+        </div>
+      </div>
+    </div>
   );
 }
