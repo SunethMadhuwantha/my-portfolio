@@ -95,34 +95,66 @@ export default function Home() {
       </section>
 
       {/* 2. Projects Grid */}
-      <section id="projects" className="max-w-6xl mx-auto px-6 py-20">
-        <h2 className="text-2xl font-semibold mb-12 flex items-center gap-4">
-          Recent Work <div className="h-px flex-1 bg-slate-800" />
-        </h2>
+<section id="projects" className="max-w-6xl mx-auto px-6 py-20">
+  <h2 className="text-2xl font-semibold mb-12 flex items-center gap-4">
+    Recent Work <div className="h-px flex-1 bg-slate-800" />
+  </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {data.projects.map((project, index) => (
-            <div 
-              key={index} 
-              className="group relative p-8 rounded-3xl bg-slate-900/40 border border-slate-800 hover:border-blue-500/50 transition-all duration-300"
-            >
-              <h3 className="text-2xl font-bold group-hover:text-blue-400 transition-colors">
-                {project.title}
-              </h3>
-              <p className="mt-4 text-slate-400 leading-relaxed">
-                {project.description}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {project.tech.map((tag, tagIndex) => (
-                  <span key={`${tag}-${tagIndex}`} className="px-3 py-1 text-xs font-medium bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {data.projects.map((project, index) => (
+      <div 
+        key={index} 
+        className="group relative flex flex-col rounded-3xl bg-slate-900/40 border border-slate-800 hover:border-blue-500/50 transition-all duration-300 overflow-hidden"
+      >
+        {/* Project Cover Image */}
+        <div className="relative h-48 w-full overflow-hidden">
+          <Image
+            src={project.image || "/api/placeholder/400/200"} // Fallback if image is missing
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+          />
         </div>
-      </section>
+
+        {/* Card Content */}
+        <div className="p-8">
+          <h3 className="text-2xl font-bold group-hover:text-blue-400 transition-colors">
+            {project.title}
+          </h3>
+          <p className="mt-4 text-slate-400 leading-relaxed">
+            {project.description}
+          </p>
+          
+          <div className="mt-6 flex flex-wrap gap-2">
+            {project.tech.map((tag, tagIndex) => (
+              <span key={`${tag}-${tagIndex}`} className="px-3 py-1 text-xs font-medium bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Action Icons/Links */}
+          <div className="mt-8 pt-6 border-t border-slate-800 flex items-center gap-6">
+            <a 
+              href={project.link} 
+              target="_blank" 
+              className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors"
+            >
+              <ExternalLink className="w-4 h-4" /> Live Demo
+            </a>
+            <a 
+              href={project.github} 
+              target="_blank" 
+              className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+            >
+              <Github className="w-4 h-4" /> Source Code
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
       {/* 3. Certifications Section */}
 <section id="certifications" className="max-w-6xl mx-auto px-6 py-20">
   <h2 className="text-2xl font-semibold mb-12 flex items-center gap-4">

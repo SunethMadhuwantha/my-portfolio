@@ -3,19 +3,32 @@
   "role": "Software Engineer",
   "about": "1 year of experience building clean, data-driven applications year of experience building clean, data-driven applications year of experience building clean, data-driven applications year of experience building clean, data-driven applications.",
   "projects": [
-    {
-      "title": "Portfolimo Site",
-      "description": "A modern, eye-catching developer portfolio.",
-      "tech": ["Next.js", "Tailwind", "JSON"],
-      "link": "https://github.com/your-username"
-    },
-    {
-      "title": "Portfolnio Site",
-      "description": "A modern, eye-catching developer portfolio.",
-      "tech": ["Next.js", "Tailwind", "JSON", "Tailwid", "JSON"],
-      "link": "https://github.com/your-username"
-    }
-  ],
+  {
+    "title": "Portfolio Site",
+    "description": "A modern, eye-catching developer portfolio.",
+    "tech": ["Next.js", "Tailwind", "JSON","Tailwllind", "J456SON"],
+    "image": "/projectcovers/project1.png", 
+    "link": "https://your-live-demo.com",
+    "github": "https://github.com/your-username/repo"
+  },
+  {
+    "title": "E-Commerce App",
+    "description": "A fully functional online store.",
+    "tech": ["React", "Node.js", "MongoDB"],
+    "image": "/projectcovers/project2.png",
+    "link": "https://your-store.com",
+    "github": "https://github.com/your-username/store"
+  },
+  {
+    "title": "Chat Application",
+    "description": "A real-time chat app with WebSocket.",
+    "tech": ["Next.js", "Socket.io", "Express"],
+    "image": "/projectcovers/project3.png",
+    "link": "https://your-chat-app.com",
+    "github": "https://github.com/your-username/chat-app"
+  }
+]
+  ,
   "experience": [
     {
       "company": "First Tech Job",
