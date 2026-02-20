@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 import data from '../data/portfolio.json';
-import { ChevronDown, ChevronUp, Award, Code2, Github, Linkedin, Mail, ExternalLink, Menu, X, FileDown} from 'lucide-react';
+import { ChevronLeft, ChevronRight,ChevronDown, ChevronUp, Award, Code2, Github, Linkedin, Mail, ExternalLink, Menu, X, FileDown} from 'lucide-react';
 import { AnimatePresence,motion } from 'framer-motion';      // Added for animations
 
 
-import { useState } from 'react'; // For mobile menu toggle
+import { useState,useEffect } from 'react'; // For mobile menu toggle
 
 
 export default function Home() {
@@ -115,69 +115,124 @@ export default function Home() {
         {data.projects.length > DISPLAY_LIMIT && (
           <button 
             onClick={() => setShowAllProjects(!showAllProjects)}
-            className="mt-12 mx-auto flex items-center gap-2 px-6 py-3 rounded-full border border-slate-800 hover:bg-slate-900 transition-all text-slate-400 hover:text-white"
+            className="mt-12 mx-auto flex items-center gap-2 px-6 py-3 rounded-full border border-slate-800 hover:bg-slate-900 transition-all text-slate-400"
           >
             {showAllProjects ? <>Show Less <ChevronUp /></> : <>Show All Projects <ChevronDown /></>}
           </button>
         )}
       </section>
 
-      {/* 3. Certifications Section */}
-      <section id="certifications" className="max-w-6xl mx-auto px-6 py-20">
-        <h2 className="text-2xl font-semibold mb-12 flex items-center gap-4">
-          Certifications <div className="h-px flex-1 bg-slate-800" />
-        </h2>
+{/* 3. Certifications Section */}
+<section id="certifications" className="max-w-6xl mx-auto px-6 py-20">
+  <h2 className="text-2xl font-semibold mb-12 flex items-center gap-4">
+    Certifications <div className="h-px flex-1 bg-slate-800" />
+  </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {data.certifications.slice(0, showAllCerts ? undefined : DISPLAY_LIMIT).map((cert, index) => (
-            <div 
-              key={index} 
-              onClick={() => setSelectedCert(cert)}
-              className="flex items-center p-4 rounded-2xl bg-slate-900/30 border border-slate-800 hover:border-blue-500/30 transition-all cursor-pointer"
-            >
-              <div className="relative w-12 h-12 shrink-0 mr-4 rounded-lg overflow-hidden border border-slate-700">
-                <Image src={cert.image} alt={cert.issuer} fill className="object-cover" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-bold text-white truncate">{cert.title}</h3>
-                <p className="text-xs text-slate-500">{cert.issuer}</p>
-              </div>
-              <ExternalLink className="w-4 h-4 text-slate-600" />
-            </div>
-          ))}
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {data.certifications.slice(0, showAllCerts ? undefined : DISPLAY_LIMIT).map((cert, index) => (
+      <div 
+        key={index} 
+        onClick={() => setSelectedCert(cert)}
+        className="flex items-stretch rounded-2xl bg-slate-900/30 border border-slate-800 hover:border-blue-500/30 transition-all cursor-pointer group overflow-hidden"
+      >
+        {/* Badge Image - Now filling the left side fully */}
+        <div className="relative w-24 shrink-0 bg-slate-950/50 border-r border-slate-800">
+          <Image 
+            src={cert.image} 
+            alt={cert.issuer} 
+            fill 
+            className="object-contain p-2 grayscale group-hover:grayscale-0 transition-all duration-300" 
+          />
         </div>
 
-        {data.certifications.length > DISPLAY_LIMIT && (
-          <button 
-            onClick={() => setShowAllCerts(!showAllCerts)}
-            className="mt-8 mx-auto flex items-center gap-2 text-sm text-slate-500 hover:text-white transition-all"
-          >
-            {showAllCerts ? <ChevronUp /> : <ChevronDown />} {showAllCerts ? "Collapse" : "View More Certificates"}
-          </button>
-        )}
-      </section>
+        {/* Content Area */}
+        <div className="flex-1 p-4 min-w-0 flex flex-col justify-center">
+          <h3 className="text-sm font-bold text-white truncate group-hover:text-blue-400 transition-colors">
+            {cert.title}
+          </h3>
+          <p className="text-[11px] text-slate-400 mt-0.5">
+            {cert.issuer}
+          </p>
+          <p className="text-[10px] text-slate-500 mb-2 italic">
+            {cert.date}
+          </p>
+          
+          <div className="flex flex-wrap gap-1">
+            {cert.skills?.map((skill, sIndex) => (
+              <span 
+                key={sIndex} 
+                className="text-[9px] px-1.5 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 font-medium"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
 
-      {/* Certificate Modal Popup */}
+        {/* Action Icon */}
+        <div className="flex items-center pr-3">
+          <ExternalLink className="w-4 h-4 text-slate-600 group-hover:text-blue-400 shrink-0" />
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {data.certifications.length > DISPLAY_LIMIT && (
+    <button 
+      onClick={() => setShowAllCerts(!showAllCerts)}
+      className="mt-8 mx-auto flex items-center gap-2 text-sm text-slate-500 hover:text-white transition-all px-4 py-2 border border-slate-800 rounded-lg"
+    >
+      {showAllCerts ? <ChevronUp size={16}/> : <ChevronDown size={16}/>} 
+      {showAllCerts ? "Show Less" : "View All Certifications"}
+    </button>
+  )}
+</section>
+
+      {/* Certificate Modal Popup (Shows 'fullCertificate' field) */}
       <AnimatePresence>
         {selectedCert && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-100 flex items-center justify-center p-4 md:p-10">
             <motion.div 
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              onClick={() => setSelectedCert(null)}
-              className="absolute inset-0 bg-black/90 backdrop-blur-sm"
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedCert(null)} 
+              className="absolute inset-0 bg-black/95 backdrop-blur-md" 
             />
             <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
-              className="relative max-w-4xl w-full bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl"
+              initial={{ scale: 0.9, opacity: 0 }} 
+              animate={{ scale: 1, opacity: 1 }} 
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-5xl w-full bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl"
             >
-              <button onClick={() => setSelectedCert(null)} className="absolute top-4 right-4 z-10 p-2 bg-black/50 rounded-full hover:bg-red-500/20 text-white transition-all"><X /></button>
-              <div className="relative aspect-video w-full bg-slate-950">
-                <Image src={selectedCert.image} alt="Full Certificate" fill className="object-contain" />
+              <button 
+                onClick={() => setSelectedCert(null)} 
+                className="absolute top-4 right-4 z-10 p-2 bg-black/50 rounded-full text-white hover:bg-red-500/40 transition-all"
+              >
+                <X size={20}/>
+              </button>
+              
+              <div className="relative aspect-[1.414/1] w-full bg-white"> 
+                <Image 
+                  src={selectedCert.fullCertificate} 
+                  alt="Official Certificate" 
+                  fill 
+                  className="object-contain" 
+                />
               </div>
-              <div className="p-6 text-center">
-                <h3 className="text-xl font-bold mb-2">{selectedCert.title}</h3>
-                <p className="text-slate-400 mb-6">{selectedCert.issuer} • Issued {selectedCert.date}</p>
-                <a href={selectedCert.verifyLink} target="_blank" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 rounded-full font-bold">Verify Credential <ExternalLink size={18}/></a>
+              
+              <div className="p-4 bg-slate-900 border-t border-slate-800 flex justify-between items-center">
+                <div className="text-left">
+                  <p className="text-white font-bold">{selectedCert.title}</p>
+                  <p className="text-xs text-slate-400">{selectedCert.issuer}</p>
+                </div>
+                <a 
+                  href={selectedCert.verifyLink} 
+                  target="_blank" 
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-500 transition-colors flex items-center gap-2"
+                >
+                  Verify <ExternalLink size={14}/>
+                </a>
               </div>
             </motion.div>
           </div>
@@ -276,39 +331,81 @@ export default function Home() {
   );
 }
 
-// Sub-component for Project Cards to handle individual description expansion
+// PROJECT CARD COMPONENT WITH SLIDER
 function ProjectCard({ project }: { project: any }) {
+  const [curr, setCurr] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
+  const images = Array.isArray(project.images) ? project.images : [project.images];
+
+  useEffect(() => {
+    if (images.length < 2) return;
+    const interval = setInterval(() => setCurr((c) => (c === images.length - 1 ? 0 : c + 1)), 5000);
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  const prev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurr((curr) => (curr === 0 ? images.length - 1 : curr - 1));
+  };
+  
+  const next = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurr((curr) => (curr === images.length - 1 ? 0 : curr + 1));
+  };
 
   return (
     <div className="group relative flex flex-col rounded-2xl bg-slate-900/40 border border-slate-800 hover:border-blue-500/50 transition-all duration-300 overflow-hidden">
-      <div className="relative h-40 w-full overflow-hidden">
-        <Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+      <div className="relative h-44 w-full overflow-hidden bg-slate-950">
+        <div 
+          className="flex h-full transition-transform duration-500 ease-out" 
+          style={{ transform: `translateX(-${curr * 100}%)` }}
+        >
+          {images.map((img: string, i: number) => (
+            <div key={i} className="relative min-w-full h-full">
+              <Image src={img} alt="" fill className="object-cover" />
+            </div>
+          ))}
+        </div>
+
+        {images.length > 1 && (
+          <>
+            <div className="absolute inset-0 flex items-center justify-between p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <button onClick={prev} className="p-1 rounded-full bg-black/60 text-white hover:bg-blue-500"><ChevronLeft size={18}/></button>
+              <button onClick={next} className="p-1 rounded-full bg-black/60 text-white hover:bg-blue-500"><ChevronRight size={18}/></button>
+            </div>
+            <div className="absolute bottom-3 flex justify-center w-full gap-1.5">
+              {images.map((_: any, i: number) => (
+                <div key={i} className={`h-1 rounded-full transition-all bg-white ${curr === i ? "w-4" : "w-1 opacity-50"}`} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
+
       <div className="p-5 flex flex-col flex-1">
-        <h3 className="text-xl font-bold text-white leading-tight">{project.title}</h3>
+        <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
         
-        <div className="relative mt-2">
-          <p className={`text-sm text-slate-400 leading-relaxed transition-all ${!isExpanded && "line-clamp-2"}`}>
+        <div className="relative">
+          <p className={`text-sm text-slate-400 leading-relaxed ${!isExpanded && "line-clamp-2"}`}>
             {project.description}
           </p>
           <button 
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="text-xs text-blue-400 mt-1 hover:underline flex items-center gap-1"
+            onClick={() => setIsExpanded(!isExpanded)} 
+            className="text-xs text-blue-400 mt-1.5 hover:text-blue-300 flex items-center gap-1 font-medium"
           >
             {isExpanded ? <>Read Less <ChevronUp size={12}/></> : <>Read More <ChevronDown size={12}/></>}
           </button>
         </div>
-        
+
         <div className="mt-4 flex flex-wrap gap-1.5">
           {project.tech.map((tag: string, i: number) => (
-            <span key={i} className="px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-400 rounded-md border border-blue-500/20">{tag}</span>
+            <span key={i} className="px-2 py-0.5 text-[10px] font-semibold bg-slate-800 text-slate-300 rounded border border-slate-700">{tag}</span>
           ))}
         </div>
 
-        <div className="mt-auto pt-4 border-t border-slate-800 flex items-center justify-between">
-          <a href={project.link} target="_blank" className="flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-blue-400 transition-colors"><ExternalLink className="w-3.5 h-3.5" /> Demo</a>
-          <a href={project.github} target="_blank" className="flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-white transition-colors"><Github className="w-3.5 h-3.5" /> Source</a>
+        <div className="mt-auto pt-6 flex items-center justify-between border-t border-slate-800/50 mt-4">
+          <a href={project.link} target="_blank" className="flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-blue-400 transition-colors"><ExternalLink size={14} /> Demo</a>
+          <a href={project.github} target="_blank" className="flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors"><Github size={14} /> Code</a>
         </div>
       </div>
     </div>

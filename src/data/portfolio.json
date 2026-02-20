@@ -7,7 +7,7 @@
     "title": "Portfolio Site",
     "description": "A modern, eye-catching A real-time chat app with WebSocketA real-time chat app with WebSocketdeveloper portfolio.",
     "tech": ["Next.js", "Tailwind", "JSON","Tailwllind", "J456SON","Express"],
-    "image": "/projectcovers/project1.png", 
+    "images": ["/projectcovers/project1-a.png", "/projectcovers/project1-b.png", "/projectcovers/project1-c.png"], 
     "link": "https://your-live-demo.com",
     "github": "https://github.com/your-username/repo"
   },
@@ -15,7 +15,7 @@
     "title": "E-Commerce App",
     "description": "A fully functional online store.",
     "tech": ["React", "Node.js", "MongoDB"],
-    "image": "/projectcovers/project2.png",
+    "images": ["/projectcovers/project2.png"],
     "link": "https://your-store.com",
     "github": "https://github.com/your-username/store"
   },
@@ -23,7 +23,7 @@
     "title": "Chat Application",
     "description": "A real-time chat app with WebSocket.",
     "tech": ["Next.js", "Socket.io", "Express"],
-    "image": "/projectcovers/project3.png",
+    "images": ["/projectcovers/project3.png"],
     "link": "https://your-chat-app.com",
     "github": "https://github.com/your-username/chat-app"
   },
@@ -31,7 +31,7 @@
     "title": "Task Manager",
     "description": "A productivity app to manage tasks.",
     "tech": ["React", "Node.js", "PostgreSQL"],
-    "image": "/projectcovers/project2.png",
+    "images": ["/projectcovers/project2.png"],
     "link": "https://your-task-manager.com",
     "github": "https://github.com/your-username/task-manager"
   },
@@ -39,7 +39,7 @@
     "title": "E-Commerce App",
     "description": "A fully functional online store.",
     "tech": ["React", "Node.js", "MongoDB"],
-    "image": "/projectcovers/project2.png",
+    "images": ["/projectcovers/project2.png"],
     "link": "https://your-store.com",
     "github": "https://github.com/your-username/store"
   },
@@ -47,7 +47,7 @@
     "title": "Chat Application",
     "description": "A real-time chat app with WebSocket.",
     "tech": ["Next.js", "Socket.io", "Express"],
-    "image": "/projectcovers/project3.png",
+    "images": ["/projectcovers/project3.png"],
     "link": "https://your-chat-app.com",
     "github": "https://github.com/your-username/chat-app"
   },
@@ -55,7 +55,7 @@
     "title": "Task Manager",
     "description": "A productivity app to manage tasks.",
     "tech": ["React", "Node.js", "PostgreSQL"],
-    "image": "/projectcovers/project2.png",
+    "images": ["/projectcovers/project2.png"],
     "link": "https://your-task-manager.com",
     "github": "https://github.com/your-username/task-manager"
   }
@@ -82,8 +82,9 @@
   {
     "title": "AWS Cloud Practitioner",
     "issuer": "Amazon Web Services",
-    "date": "2025",
+    "date": "2025-04-08",
     "image": "/aws-badge.png",
+    "fullCertificate": "/aws-cert.png",
     "verifyLink": "https://credly.com/...",
     "skills": ["Cloud", "Security"]
   },
@@ -112,7 +113,7 @@
     "skills": ["React", "UX Design", "UX Dign", " Design", "i5689sign"]
   },
   {
-    "title": "Meta Front-End Dfg ug uguuyfjfgfjyfjhfjf yfjy fjhfj jfyf jf f uiu iughj yf ff ug jg g u u u u  ugfyjfjheveloper",
+    "title": "Meta Front-End Dfg ug uguuyfjfgfjyfjhfjf yfjy fjhfj jfyf jf f uiu iughjEnd Dfg ug uguuyfjfgfjyfjhfjf yfjy fjhfj jfyf jf f uiu iughj yf ff ug jg g u u u u  ugfyjfjheveloper",
     "issuer": "Coursera",
     "date": "2024",
     "image": "/metalogo.png",
