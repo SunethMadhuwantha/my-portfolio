@@ -1,0 +1,54 @@
+{
+  "name": "Suneth Kitty",
+  "role": "Software Engineer",
+  "about": "1 year of experience building clean, data-driven applications year of experience building clean, data-driven applications year of experience building clean, data-driven applications year of experience building clean, data-driven applications.",
+  "projects": [
+    {
+      "title": "Portfolimo Site",
+      "description": "A modern, eye-catching developer portfolio.",
+      "tech": ["Next.js", "Tailwind", "JSON"],
+      "link": "https://github.com/your-username"
+    },
+    {
+      "title": "Portfolnio Site",
+      "description": "A modern, eye-catching developer portfolio.",
+      "tech": ["Next.js", "Tailwind", "JSON", "Tailwid", "JSON"],
+      "link": "https://github.com/your-username"
+    }
+  ],
+  "experience": [
+    {
+      "company": "First Tech Job",
+      "role": "Software Engineer",
+      "duration": "2024 - Present"
+    },
+     {
+      "company": "First Tech Job",
+      "role": "Software Engineer",
+      "duration": "2024 - Present"
+    },
+     {
+      "company": "First Tech Job",
+      "role": "Software Engineer",
+      "duration": "2024 - Present"
+    }
+  ],
+  "certifications": [
+  {
+    "name": "AWS Certified Developer",
+    "issuer": "Amazon",
+    "date": "2025"
+  },
+    {
+      "name": "Meta Front-End Professional",
+      "issuer": "Coursera",
+      "date": "2024"
+    }
+],
+ "skills": ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Git", "Docker"],
+ "socials": {
+  "github": "https://github.com/yourusername",
+  "linkedin": "https://linkedin.com/in/yourusername",
+  "email": "yourname@example.com"
+}
+}
