@@ -7,6 +7,7 @@ import Projects from '@/components/Projects';
 import Certifications from '@/components/Certifications';
 import Skills from '@/components/Skills';
 import Contact from '@/components/Contact';
+import ScrollToTop from '@/components/ScrollToTop';
 
 export default function Home() {
   return (
@@ -43,6 +44,8 @@ export default function Home() {
       <Contact 
         socials={data.socials} 
       />
+
+      <ScrollToTop />
 
       {/* 7. Footer */}
       <footer className="py-20 border-t border-slate-900/50 text-center text-slate-600 text-sm">
