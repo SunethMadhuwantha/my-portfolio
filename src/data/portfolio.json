@@ -178,6 +178,7 @@
 ],
  "skills": ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Git", "Docker"],
  "socials": {
+  "medium": "90zuneth99",
   "github": "https://github.com/yourusername",
   "linkedin": "https://linkedin.com/in/yourusername",
   "email": "yourname@example.com"

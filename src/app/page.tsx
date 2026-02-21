@@ -9,6 +9,8 @@ import Skills from '@/components/Skills';
 import Contact from '@/components/Contact';
 import ScrollToTop from '@/components/ScrollToTop';
 import Timeline from '@/components/Timeline';
+import Blogs from '@/components/Blogs';
+import MediumFollow from '@/components/MediumFollow';
 
 export default function Home() {
   return (
@@ -46,9 +48,17 @@ export default function Home() {
         skills={data.skills} 
       />
 
+      <Blogs 
+        username={data.socials.medium} 
+      />
+
       {/* 6. Contact Section */}
       <Contact 
         socials={data.socials} 
+      />
+
+      <MediumFollow 
+         username={data.socials.medium} 
       />
 
       <ScrollToTop />
