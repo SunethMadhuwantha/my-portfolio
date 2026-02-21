@@ -78,6 +78,16 @@
       "duration": "2024 - Present"
     }
   ],
+  
+  
+  "education": [
+    {
+      "school": "University of Tech",
+      "degree": "B.Sc. in Computer Science",
+      "year": "2020 - 2024"
+    }
+  ],
+
  "certifications": [
   {
     "title": "AWS Cloud Practitioner",

@@ -22,3 +22,16 @@ export interface Socials {
   linkedin: string;
   email: string;
 }
+
+export interface Experience {
+  company: string;
+  role: string;
+  duration: string;
+  description?: string; // Optional if you want to add details later
+}
+
+export interface Education {
+  school: string;
+  degree: string;
+  year: string;
+}

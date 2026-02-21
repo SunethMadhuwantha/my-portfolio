@@ -8,6 +8,7 @@ import Certifications from '@/components/Certifications';
 import Skills from '@/components/Skills';
 import Contact from '@/components/Contact';
 import ScrollToTop from '@/components/ScrollToTop';
+import Timeline from '@/components/Timeline';
 
 export default function Home() {
   return (
@@ -23,6 +24,11 @@ export default function Home() {
         name={data.name} 
         role={data.role} 
         about={data.about} 
+      />
+
+      <Timeline 
+        experience={data.experience} 
+        education={data.education} 
       />
 
       {/* 3. Projects Section */}
