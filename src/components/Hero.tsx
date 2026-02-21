@@ -27,7 +27,7 @@ export default function Hero({ name, role, about }: HeroProps) {
       </div>
       
       <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight">
-        I'm <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+        I'm <span className="bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
           {name}
         </span>
       </h1>

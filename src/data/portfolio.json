@@ -59,34 +59,62 @@
     "link": "https://your-task-manager.com",
     "github": "https://github.com/your-username/task-manager"
   }
-]
+  ]
   ,
+  
   "experience": [
     {
-      "company": "First Tech Job",
-      "role": "Software Engineer",
-      "duration": "2024 - Present"
+      "company": "Tech Corp",
+      "role": "Frontend Developer",
+      "duration": "2024 - Present",
+      "description": [
+        "Developed clean user interfaces using Next.js",
+        "Optimized website performance by 40%",
+        "Developed clean uscber interfaces using Next.js",
+        "Optimized website performancjje by 40%",
+        "Collaborated with UI/UX designers"
+      ],
+      "tech": ["React", "TypeScript", "Tailwind"]
     },
-     {
-      "company": "First Tech Job",
-      "role": "Software Engineer",
-      "duration": "2024 - Present"
-    },
-     {
-      "company": "First Tech Job",
-      "role": "Software Engineer",
-      "duration": "2024 - Present"
+    {
+      "company": "Web Solutjions",
+      "role": "Software Engjineer Intern",
+      "duration": "2023 - 20224",
+      "description": [
+        "Built RESTful APIsb with Node.js and Express",
+        "Implemented authentication using JWT",
+        "Worked in an Agile team environment"
+      ],
+      "tech": ["Nodekhk.js", "Expkress", "MongogjjjjgDB", "Expkress", "MongogjjjjgDB"]
     }
   ],
-  
-  
+
   "education": [
     {
-      "school": "University of Tech",
-      "degree": "B.Sc. in Computer Science",
-      "year": "2020 - 2024"
+      "school": "Global University",
+      "degree": "B.Sc. Computer Science",
+      "year": "2020 - 2024",
+      "description": "Focused on Software Engineering and Algorithms. Graduated with First Class Honors.Focused on Software Engineering and Algorit",
+      "transcript": "/docs/transcript.pdf"
+    },
+    {
+      "school": "City College",
+      "degree": "High School Diploma",
+      "year": "2016 - 2020",
+      "description": [
+        "Built RESTful APIsb with Node.js and Express",
+        "Implemented authentication using JWT",
+        "Worked in an Agile team environment",
+        "Implemented authentication using JWT",
+        "Worked in an Agile team environment"
+      ],
+      "transcript": "/docs/highschool-transcript.pdf"
     }
   ],
+
+  
+  
+    
 
  "certifications": [
   {

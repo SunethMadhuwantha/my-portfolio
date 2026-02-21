@@ -5,7 +5,7 @@ import { Mail, Github, Linkedin } from 'lucide-react';
 export default function Contact({ socials }: { socials: any }) {
   return (
     <section className="max-w-6xl mx-auto px-6 py-32">
-      <div className="relative p-12 rounded-3xl bg-gradient-to-b from-slate-900/50 to-slate-950 border border-slate-800 text-center overflow-hidden">
+      <div className="relative p-12 rounded-3xl bg-linear-to-b from-slate-900/50 to-slate-950 border border-slate-800 text-center overflow-hidden">
         <div className="absolute -top-24 -left-24 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full" />
         
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>

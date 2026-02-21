@@ -27,11 +27,14 @@ export interface Experience {
   company: string;
   role: string;
   duration: string;
-  description?: string; // Optional if you want to add details later
+  description: string[]; // Changed to array for bullet points
+  tech?: string[];
 }
 
 export interface Education {
   school: string;
   degree: string;
   year: string;
+  description: string;
+  transcript?: string; // Path to PDF or Image
 }

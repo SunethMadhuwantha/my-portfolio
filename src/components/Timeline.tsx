@@ -1,80 +1,148 @@
 "use client";
-import { motion } from 'framer-motion';
-import { Briefcase, GraduationCap } from 'lucide-react';
-import { Experience, Education } from '@/types';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Briefcase, GraduationCap, ChevronDown, FileText, X } from 'lucide-react';
 
-interface TimelineProps {
-  experience: Experience[];
-  education: Education[];
-}
+export default function Timeline({ experience, education }: { experience: any[], education: any[] }) {
+  const [activeTab, setActiveTab] = useState<'exp' | 'edu'>('exp');
+  const [expandedExp, setExpandedExp] = useState<number | null>(null);
+  const [expandedEdu, setExpandedEdu] = useState<number | null>(null);
+  const [selectedTranscript, setSelectedTranscript] = useState<string | null>(null);
 
-export default function Timeline({ experience, education }: TimelineProps) {
+  const POINT_LIMIT = 3;
+
   return (
     <section id="resume" className="max-w-6xl mx-auto px-6 py-20">
-      <h2 className="text-2xl font-semibold mb-16 flex items-center gap-4">
+      {/* 1. SECTION TOPIC (The missing piece!) */}
+      <h2 className="text-2xl font-semibold mb-12 flex items-center gap-4">
         Experience & Education <div className="h-px flex-1 bg-slate-800" />
       </h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 relative">
-        {/* Central Decorative Line for Desktop */}
-        <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-slate-800 -translate-x-1/2" />
-
-        {/* --- EXPERIENCE COLUMN --- */}
-        <div className="space-y-12">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
-              <Briefcase className="w-5 h-5 text-blue-400" />
-            </div>
-            <h3 className="text-xl font-bold text-white">Experience</h3>
-          </div>
-
-          {experience.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="relative pl-8 border-l-2 border-slate-800 hover:border-blue-500/50 transition-colors"
-            >
-              {/* Timeline Dot */}
-              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-slate-700 group-hover:border-blue-500 transition-all shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
-              
-              <span className="text-xs font-medium text-blue-400 uppercase tracking-wider">{item.duration}</span>
-              <h4 className="text-lg font-bold text-white mt-1">{item.role}</h4>
-              <p className="text-slate-400 text-sm">{item.company}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* --- EDUCATION COLUMN --- */}
-        <div className="space-y-12">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-              <GraduationCap className="w-5 h-5 text-cyan-400" />
-            </div>
-            <h3 className="text-xl font-bold text-white">Education</h3>
-          </div>
-
-          {education.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="relative pl-8 border-l-2 border-slate-800 hover:border-cyan-500/50 transition-colors"
-            >
-              {/* Timeline Dot */}
-              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-slate-700 group-hover:border-cyan-500 transition-all shadow-[0_0_10px_rgba(6,182,212,0.5)]" />
-
-              <span className="text-xs font-medium text-cyan-400 uppercase tracking-wider">{item.year}</span>
-              <h4 className="text-lg font-bold text-white mt-1">{item.degree}</h4>
-              <p className="text-slate-400 text-sm">{item.school}</p>
-            </motion.div>
-          ))}
+      {/* 2. TAB TOGGLES */}
+      <div className="flex justify-center mb-16">
+        <div className="flex p-1 bg-slate-900/50 border border-slate-800 rounded-xl">
+          <button 
+            onClick={() => setActiveTab('exp')}
+            className={`flex items-center gap-2 px-8 py-2.5 rounded-lg text-sm font-medium transition-all ${activeTab === 'exp' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
+          >
+            <Briefcase size={16} /> Experience
+          </button>
+          <button 
+            onClick={() => setActiveTab('edu')}
+            className={`flex items-center gap-2 px-8 py-2.5 rounded-lg text-sm font-medium transition-all ${activeTab === 'edu' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
+          >
+            <GraduationCap size={16} /> Education
+          </button>
         </div>
       </div>
+
+      {/* 3. CONTENT AREA */}
+      <div className="max-w-3xl mx-auto relative border-l-2 border-slate-800 ml-4 md:ml-6">
+        <AnimatePresence mode="wait">
+          {activeTab === 'exp' ? (
+            <motion.div key="exp" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }} className="space-y-12">
+              {experience.map((item, idx) => {
+                const isExpanded = expandedExp === idx;
+                const displayedPoints = isExpanded ? item.description : item.description.slice(0, POINT_LIMIT);
+                const hasMore = item.description.length > POINT_LIMIT;
+
+                return (
+                  <div key={idx} className="relative pl-8">
+                    <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-950 border-2 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+                    <span className="text-xs font-bold text-blue-400 uppercase tracking-widest">{item.duration}</span>
+                    <h4 className="text-xl font-bold text-white mt-1">{item.role}</h4>
+                    <p className="text-slate-400 font-medium mb-4">{item.company}</p>
+                    
+                    <ul className="space-y-2">
+                      {displayedPoints.map((bullet: string, i: number) => (
+                        <li key={i} className="text-sm text-slate-400 flex gap-2">
+                          <span className="text-blue-500 shrink-0">•</span> {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    {hasMore && (
+                      <button 
+                        onClick={() => setExpandedExp(isExpanded ? null : idx)}
+                        className="text-xs text-blue-400 mt-3 flex items-center gap-1 hover:text-blue-300 font-semibold"
+                      >
+                        {isExpanded ? 'Show Less' : 'Read More'} 
+                        <ChevronDown size={14} className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+                      </button>
+                    )}
+
+                    <div className="flex flex-wrap gap-2 mt-5">
+                      {item.tech?.map((t: string) => (
+                        <span key={t} className="px-2 py-0.5 text-[10px] bg-blue-500/5 border border-blue-500/20 text-blue-300 rounded uppercase font-medium">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </motion.div>
+          ) : (
+            <motion.div key="edu" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }} className="space-y-12">
+              {education.map((item, idx) => {
+                const isExpanded = expandedEdu === idx;
+                const points = Array.isArray(item.description) ? item.description : [item.description];
+                const displayedPoints = isExpanded ? points : points.slice(0, POINT_LIMIT);
+                const hasMore = points.length > POINT_LIMIT;
+
+                return (
+                  <div key={idx} className="relative pl-8">
+                    <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-950 border-2 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+                    <span className="text-xs font-bold text-blue-400 uppercase tracking-widest">{item.year}</span>
+                    <h4 className="text-xl font-bold text-white mt-1">{item.degree}</h4>
+                    <p className="text-slate-400 mb-3">{item.school}</p>
+                    
+                    <ul className="space-y-2">
+                      {displayedPoints.map((bullet: string, i: number) => (
+                        <li key={i} className="text-sm text-slate-400 flex gap-2">
+                          <span className="text-blue-500 shrink-0">•</span> {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    {hasMore && (
+                      <button 
+                        onClick={() => setExpandedEdu(isExpanded ? null : idx)}
+                        className="text-xs text-blue-400 mt-3 flex items-center gap-1 hover:text-blue-300 font-semibold"
+                      >
+                        {isExpanded ? 'Show Less' : 'Read More'} 
+                        <ChevronDown size={14} className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+                      </button>
+                    )}
+                    
+                    {item.transcript && (
+                      <button 
+                        onClick={() => setSelectedTranscript(item.transcript)}
+                        className="mt-6 flex items-center gap-2 px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white hover:border-blue-500 transition-all"
+                      >
+                        <FileText size={14} className="text-blue-400" /> View Transcript
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* 4. MODAL */}
+      <AnimatePresence>
+        {selectedTranscript && (
+          <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedTranscript(null)} className="absolute inset-0 bg-black/95 backdrop-blur-md" />
+            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="relative max-w-4xl w-full h-[85vh] bg-white rounded-2xl overflow-hidden shadow-2xl">
+              <button onClick={() => setSelectedTranscript(null)} className="absolute top-4 right-4 z-10 p-2 bg-black/50 text-white rounded-full hover:bg-red-500 transition-colors"><X size={20}/></button>
+              <iframe src={selectedTranscript} className="w-full h-full border-none" />
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
