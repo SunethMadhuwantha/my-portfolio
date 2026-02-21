@@ -133,15 +133,16 @@ export default function Home() {
       <div 
         key={index} 
         onClick={() => setSelectedCert(cert)}
-        className="flex items-stretch rounded-2xl bg-slate-900/30 border border-slate-800 hover:border-blue-500/30 transition-all cursor-pointer group overflow-hidden"
+        className="flex items-stretch rounded-2xl bg-slate-900/30 border border-slate-800 hover:border-blue-500/30 hover:bg-slate-800/40 transition-all cursor-pointer group overflow-hidden"
       >
-        {/* Badge Image - Now filling the left side fully */}
+        {/* Badge Image - Now ALWAYS in full color */}
         <div className="relative w-24 shrink-0 bg-slate-950/50 border-r border-slate-800">
           <Image 
             src={cert.image} 
             alt={cert.issuer} 
             fill 
-            className="object-contain p-2 grayscale group-hover:grayscale-0 transition-all duration-300" 
+            className="object-contain p-3 transition-transform duration-300 group-hover:scale-110" 
+            /* Removed grayscale classes so colors show immediately */
           />
         </div>
 
@@ -403,7 +404,7 @@ function ProjectCard({ project }: { project: any }) {
           ))}
         </div>
 
-        <div className="mt-auto pt-6 flex items-center justify-between border-t border-slate-800/50 mt-4">
+        <div className="mt-auto pt-6 flex items-center justify-between border-t border-slate-800/50">
           <a href={project.link} target="_blank" className="flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-blue-400 transition-colors"><ExternalLink size={14} /> Demo</a>
           <a href={project.github} target="_blank" className="flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors"><Github size={14} /> Code</a>
         </div>
