@@ -176,7 +176,14 @@
   }
 
 ],
- "skills": ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Git", "Docker"],
+ "skills": {
+  "languages": ["Java", "C", "C#", "Python", "JavaScript", "TypeScript", "HTML", "JSON", "CSS", "Sass"],
+  "web": ["React", "Angular", "Express.js", "Node.js", "Bootstrap", "Tailwind", "MUI", "Next.js", "ASP.NET", "Spring Boot"],
+  "devops": ["AWS", "Docker", "Kubernetes", "CI/CD"],
+  "database": ["MS-SQL", "MySQL", "SAP HANA", "PostgreSQL", "MongoDB"],
+  "tools": ["Git", "Postman", "Jira", "Trello", "Figma"],
+  "others": ["DSA", "OOP", "Agile", "SOLID", "Design Patterns", "Microservices"]
+},
  "socials": {
   "medium": "90zuneth99",
   "github": "https://github.com/yourusername",

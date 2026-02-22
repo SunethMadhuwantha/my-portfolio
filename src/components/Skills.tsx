@@ -1,28 +1,88 @@
 "use client";
 import { motion } from 'framer-motion';
+// Icons from SimpleIcons (Brand specific)
+import { 
+  SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiNodedotjs, 
+  SiTailwindcss, SiMui, SiSpringboot, SiDotnet, SiPython, 
+  SiDocker, SiKubernetes, SiAmazon, SiMongodb, 
+  SiPostgresql, SiMysql, SiGit, SiPostman, SiFigma, SiAngular,
+  SiSass, SiHtml5, SiCss3, SiExpress, SiBootstrap, SiSap
+} from 'react-icons/si';
+// Stable icons for Java and C# from FontAwesome
+import { FaJava } from 'react-icons/fa';
+import { TbBrandCSharp } from 'react-icons/tb'; 
 import { Code2 } from 'lucide-react';
+import { JSX } from 'react';
 
-export default function Skills({ skills }: { skills: string[] }) {
+const iconMap: Record<string, { icon: JSX.Element, color: string }> = {
+  "Java": { icon: <FaJava />, color: "#ED8B00" }, // Swapped to Fa
+  "JavaScript": { icon: <SiJavascript />, color: "#F7DF1E" },
+  "TypeScript": { icon: <SiTypescript />, color: "#3178C6" },
+  "Python": { icon: <SiPython />, color: "#3776AB" },
+  "React": { icon: <SiReact />, color: "#61DAFB" },
+  "Next.js": { icon: <SiNextdotjs />, color: "#FFFFFF" },
+  "Spring Boot": { icon: <SiSpringboot />, color: "#6DB33F" },
+  "Tailwind": { icon: <SiTailwindcss />, color: "#06B6D4" },
+  "Docker": { icon: <SiDocker />, color: "#2496ED" },
+  "AWS": { icon: <SiAmazon />, color: "#FF9900" },
+  "PostgreSQL": { icon: <SiPostgresql />, color: "#4169E1" },
+  "MongoDB": { icon: <SiMongodb />, color: "#47A248" },
+  "Angular": { icon: <SiAngular />, color: "#DD0031" },
+  "Figma": { icon: <SiFigma />, color: "#F24E1E" },
+  "Node.js": { icon: <SiNodedotjs />, color: "#339933" },
+  "SAP HANA": { icon: <SiSap />, color: "#008FD3" },
+  "Sass": { icon: <SiSass />, color: "#CC6699" },
+  "HTML": { icon: <SiHtml5 />, color: "#E34F26" },
+  "CSS": { icon: <SiCss3 />, color: "#1572B6" },
+  "Express.js": { icon: <SiExpress />, color: "#FFFFFF" },
+  "Bootstrap": { icon: <SiBootstrap />, color: "#7952B3" },
+  "C#": { icon: <TbBrandCSharp />, color: "#512BD4" } // More reliable C# icon
+};
+
+export default function Skills({ skills }: { skills: any }) {
+  // Safe guard in case skills object is partially missing
+  const rows = [
+    { items: skills?.languages || [], dir: -100 },
+    { items: skills?.web || [], dir: 100 },
+    { items: [...(skills?.devops || []), ...(skills?.database || [])], dir: -100 },
+    { items: [...(skills?.tools || []), ...(skills?.others || [])], dir: 100 }
+  ];
+
   return (
-    <section id="skills" className="max-w-6xl mx-auto px-6 py-20">
-      <h2 className="text-2xl font-semibold mb-12 flex items-center gap-4">
-        Tech Stack <div className="h-px flex-1 bg-slate-800" />
-      </h2>
+    <section id="skills" className="py-24 overflow-hidden bg-slate-950">
+      <div className="max-w-6xl mx-auto px-6 mb-16">
+        <div className="flex flex-col">
+          <span className="text-blue-500 font-mono text-xs uppercase tracking-[0.3em] mb-3">Expertise</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter">Tech Stack.</h2>
+        </div>
+      </div>
 
-      <div className="flex flex-wrap gap-4">
-        {skills.map((skill, index) => (
-          <motion.div 
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-            whileHover={{ scale: 1.05, borderColor: "#3b82f6" }}
-            className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-slate-900/40 border border-slate-800 text-slate-300 text-sm font-medium transition-all"
-          >
-            <Code2 className="w-4 h-4 text-blue-400" />
-            {skill}
-          </motion.div>
+      <div className="flex flex-col gap-8">
+        {rows.map((row, idx) => (
+          <div key={idx} className="flex overflow-hidden">
+            <motion.div 
+              animate={{ x: row.dir === -100 ? [0, -1000] : [-1000, 0] }}
+              transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+              className="flex flex-nowrap gap-4 px-2"
+            >
+              {[...row.items, ...row.items, ...row.items, ...row.items].map((skill, i) => {
+                const tech = iconMap[skill] || { icon: <Code2 size={18}/>, color: "#94a3b8" };
+                return (
+                  <div 
+                    key={i}
+                    className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-slate-900/50 border border-slate-800/50 backdrop-blur-sm group hover:border-blue-500/50 transition-all cursor-default"
+                  >
+                    <span style={{ color: tech.color }} className="text-2xl transition-transform group-hover:scale-110">
+                      {tech.icon}
+                    </span>
+                    <span className="text-slate-300 text-sm font-bold tracking-tight whitespace-nowrap">
+                      {skill}
+                    </span>
+                  </div>
+                );
+              })}
+            </motion.div>
+          </div>
         ))}
       </div>
     </section>
