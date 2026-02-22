@@ -1,7 +1,17 @@
 "use client";
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, ExternalLink, Calendar, Clock } from 'lucide-react';
+import { BookOpen, ExternalLink, Calendar, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
+
+// Swiper Imports
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+// Swiper Styles
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 interface Article {
   title: string;
@@ -15,24 +25,23 @@ export default function Blogs({ username }: { username: string }) {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // This function finds the image URL hidden inside the Medium text
   const extractImage = (content: string) => {
     const imgReg = /<img[^>]+src="([^">]+)"/;
     const match = imgReg.exec(content);
     return match ? match[1] : "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80"; 
   };
 
-useEffect(() => {
+  useEffect(() => {
     fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`)
       .then(res => res.json())
       .then(data => {
         if (data.status === 'ok') {
-          // Process the items to find the real images
           const processedArticles = data.items.map((item: any) => ({
             ...item,
             thumbnail: item.thumbnail || extractImage(item.description || item.content)
           }));
-          setArticles(processedArticles.slice(0, 3));
+          // Always taking the 6 latest articles
+          setArticles(processedArticles.slice(0, 6)); 
         }
         setLoading(false);
       })
@@ -42,73 +51,133 @@ useEffect(() => {
   if (!loading && articles.length === 0) return null;
 
   return (
-    <section id="writing" className="max-w-6xl mx-auto px-6 py-20">
-      <h2 className="text-2xl font-semibold mb-12 flex items-center gap-4">
-        Latest Writing <div className="h-px flex-1 bg-slate-800" />
-      </h2>
+    <section id="writing" className="py-32 bg-[#030712] overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 mb-16">
+        <div className="flex flex-col items-center text-center">
+          <span className="text-blue-500 font-mono text-xs uppercase tracking-[0.3em] mb-3">Publications</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter">Latest Writing.</h2>
+        </div>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="relative max-w-[1400px] mx-auto px-4">
         {loading ? (
-          // Skeleton Loader
-          [1, 2, 3].map(i => (
-            <div key={i} className="h-64 bg-slate-900/50 rounded-2xl animate-pulse border border-slate-800" />
-          ))
+          <div className="flex justify-center gap-6">
+            {[1, 2, 3].map(i => (
+              <div key={i} className="w-80 h-[450px] bg-slate-900/50 rounded-3xl animate-pulse border border-slate-800" />
+            ))}
+          </div>
         ) : (
-          articles.map((post, idx) => (
-            <motion.a
-              key={idx}
-              href={post.link}
-              target="_blank"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="group relative flex flex-col bg-slate-900/30 border border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all shadow-xl"
-            >
-              {/* Image Preview */}
-              <div className="relative h-44 w-full overflow-hidden">
-                <img 
-                  src={post.thumbnail || "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80"} 
-                  alt={post.title} 
-                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-3 left-3 px-2 py-1 bg-blue-600 text-[10px] font-bold uppercase rounded text-white shadow-lg">
-                  Medium
-                </div>
-              </div>
+          <Swiper
+            effect={'coverflow'}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={'auto'}
+            loop={true} // Enable infinite loop
+            autoplay={{
+              delay: 3000, // 3 seconds per slide
+              disableOnInteraction: false, // Keep playing after user swipes
+              pauseOnMouseEnter: true, // Stop when hovering so user can read
+            }}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 2.5,
+              slideShadows: false,
+            }}
+            navigation={{
+              nextEl: '.swiper-button-next-blog',
+              prevEl: '.swiper-button-prev-blog',
+            }}
+            pagination={{ clickable: true }}
+            modules={[EffectCoverflow, Pagination, Navigation, Autoplay]} // Added Autoplay
+            className="blog-swiper !pb-20 !px-10"
+          >
+            {articles.map((post, idx) => (
+              <SwiperSlide key={idx} className="!w-[300px] md:!w-[420px]">
+                <a
+                  href={post.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col h-[480px] bg-slate-900/20 border border-slate-800/50 rounded-[2.5rem] overflow-hidden hover:border-blue-500/50 transition-all duration-500 shadow-2xl backdrop-blur-sm"
+                >
+                  <div className="relative h-56 w-full overflow-hidden">
+                    <img 
+                      src={post.thumbnail} 
+                      alt={post.title} 
+                      className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute top-5 left-5 px-3 py-1 bg-black/50 backdrop-blur-md border border-white/10 text-[10px] font-bold uppercase rounded-full text-white">
+                      Medium
+                    </div>
+                  </div>
 
-              <div className="p-5 flex flex-col flex-1">
-                <div className="flex items-center gap-3 text-slate-500 text-[10px] mb-3">
-                  <span className="flex items-center gap-1"><Calendar size={12}/> {new Date(post.pubDate).toLocaleDateString()}</span>
-                  <span className="flex items-center gap-1"><Clock size={12}/> 5 min read</span>
-                </div>
-                
-                <h3 className="text-white font-bold text-md leading-snug group-hover:text-blue-400 transition-colors line-clamp-2 mb-4">
-                  {post.title}
-                </h3>
+                  <div className="p-8 flex flex-col flex-1">
+                    <div className="flex items-center gap-4 text-slate-500 text-xs mb-4 font-medium">
+                      <span className="flex items-center gap-1.5"><Calendar size={14} className="text-blue-500"/> {new Date(post.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                    </div>
+                    
+                    <h3 className="text-white font-bold text-xl md:text-2xl leading-tight group-hover:text-blue-400 transition-colors line-clamp-3 mb-6">
+                      {post.title}
+                    </h3>
 
-                <div className="mt-auto flex items-center justify-between">
-                   <div className="flex gap-1">
-                    {post.categories.slice(0, 2).map(cat => (
-                      <span key={cat} className="text-[9px] text-slate-500 lowercase">#{cat}</span>
-                    ))}
-                   </div>
-                   <ExternalLink size={14} className="text-slate-600 group-hover:text-white" />
-                </div>
-              </div>
-            </motion.a>
-          ))
+                    <div className="mt-auto flex items-center justify-between border-t border-slate-800/50 pt-6">
+                       <div className="flex gap-2">
+                        {post.categories.slice(0, 2).map(cat => (
+                          <span key={cat} className="text-[10px] px-3 py-1 rounded-full bg-slate-800/50 text-slate-400 border border-slate-700/50">
+                            {cat}
+                          </span>
+                        ))}
+                       </div>
+                       <div className="w-10 h-10 rounded-full bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                        <ExternalLink size={16} />
+                       </div>
+                    </div>
+                  </div>
+                </a>
+              </SwiperSlide>
+            ))}
+
+            {/* Custom Navigation Arrows */}
+            <div className="swiper-button-prev-blog absolute left-4 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-slate-900/90 border border-slate-800 flex items-center justify-center text-white cursor-pointer hover:bg-blue-600 hover:border-blue-500 transition-all hidden lg:flex shadow-2xl">
+              <ChevronLeft size={28} />
+            </div>
+            <div className="swiper-button-next-blog absolute right-4 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-slate-900/90 border border-slate-800 flex items-center justify-center text-white cursor-pointer hover:bg-blue-600 hover:border-blue-500 transition-all hidden lg:flex shadow-2xl">
+              <ChevronRight size={28} />
+            </div>
+          </Swiper>
         )}
       </div>
 
-      <div className="mt-12 text-center">
+      <div className="mt-10 text-center">
         <a 
           href={`https://medium.com/@${username}`} 
           target="_blank"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-slate-800 text-sm text-slate-400 hover:text-white hover:bg-slate-900 transition-all"
+          className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-bold text-sm hover:scale-105 transition-all shadow-lg active:scale-95"
         >
-          <BookOpen size={16} /> Read all articles on Medium
+          <BookOpen size={18} /> Explore All Publications
         </a>
       </div>
+
+      <style jsx global>{`
+        .blog-swiper .swiper-pagination-bullet {
+          background: #334155;
+          opacity: 1;
+        }
+        .blog-swiper .swiper-pagination-bullet-active {
+          background: #3b82f6;
+          width: 30px;
+          border-radius: 10px;
+          transition: all 0.4s ease;
+        }
+        .blog-swiper .swiper-slide {
+          transition: filter 0.3s;
+        }
+        .blog-swiper .swiper-slide:not(.swiper-slide-active) {
+          filter: blur(1px) grayscale(0.2);
+          opacity: 0.6;
+        }
+      `}</style>
     </section>
   );
 }
