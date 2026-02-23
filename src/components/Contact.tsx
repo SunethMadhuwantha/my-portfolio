@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Github, Linkedin, Copy, Check, Globe, Clock, Phone, ArrowUpRight, Send, Hash } from 'lucide-react';
+import { Mail, Github, Linkedin, Copy, Check, Globe, Clock, Phone, ArrowUpRight, Send, Hash, MessageSquare } from 'lucide-react';
 
 export default function Contact({ socials }: { socials: any }) {
   const [copied, setCopied] = useState(false);
@@ -31,120 +31,126 @@ export default function Contact({ socials }: { socials: any }) {
   );
 
   return (
-    <section id="contact" className="max-w-5xl mx-auto px-6 py-24 relative bg-[#030712]">
+    <section id="contact" className="py-32 bg-[#030712] overflow-hidden">
       
-      {/* Background Accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-px bg-linear-to-r from-transparent via-blue-500/20 to-transparent pointer-events-none" />
+      {/* --- NEW DYNAMIC HEADER (UNIFIED DESIGN) --- */}
+      <div className="max-w-6xl mx-auto px-6 relative mb-24 flex flex-col items-start text-left">
+        {/* Large Decorative Background Label */}
+        <span className="absolute -left-6 -top-12 text-[120px] font-black text-white/[0.02] select-none pointer-events-none hidden md:block uppercase">
+          Link
+        </span>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="relative z-10 space-y-8"
-      >
-        {/* --- COMPACT HEADER --- */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800/60 pb-8">
-          <div>
-            <div className="flex items-center gap-2 mb-2 text-blue-500 font-mono text-[9px] uppercase tracking-[0.3em]">
-              <Hash size={10} /> Contact / Index
-            </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
-              Let's build <span className="text-slate-500 font-light italic">something.</span>
-            </h2>
+        <div className="flex items-center gap-3 text-blue-500 font-mono text-[10px] uppercase tracking-[0.5em] mb-6">
+          <MessageSquare size={14} className="text-blue-500" /> 
+          Comm_Channels / v.1.0
+        </div>
+
+        <div className="flex flex-col md:flex-row md:items-end gap-6 w-full">
+          <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none">
+            Let's <span className="text-slate-700 italic font-light">Build.</span>
+          </h2>
+          
+          <div className="hidden md:block flex-1 h-px bg-slate-800 mb-4 opacity-50" />
+          
+          <div className="flex items-center gap-4 px-4 py-2 bg-blue-500/5 border border-blue-500/20 rounded-xl backdrop-blur-sm">
+            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+            <span className="text-[10px] font-black text-blue-400 uppercase tracking-widest">
+              Ready for Hire
+            </span>
           </div>
-          <div className="flex items-center gap-6">
-             <div className="text-right">
-                <p className="text-slate-500 font-mono text-[8px] uppercase tracking-widest">Availability</p>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 relative">
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative z-10 space-y-8"
+        >
+          {/* --- MAIN HUB GRID --- */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            
+            {/* EMAIL COMPONENT */}
+            <div className="lg:col-span-2 p-8 rounded-3xl bg-slate-900/20 border border-slate-800/40 backdrop-blur-md flex flex-col justify-between group transition-all hover:border-blue-500/30">
+              <div className="flex justify-between items-start">
+                <div>
+                  <p className="text-slate-500 font-mono text-[9px] uppercase tracking-widest mb-2">Electronic Mail</p>
+                  <h3 className="text-xl md:text-3xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                    {socials.email}
+                  </h3>
+                  <p className="mt-3 text-slate-500 text-xs italic">Usually active daily. Response within 24 hours.</p>
+                </div>
+                <button onClick={copyEmail} className="p-3 rounded-xl bg-slate-800/40 text-slate-500 hover:text-white hover:bg-slate-800 transition-all">
+                  {copied ? <Check size={18} className="text-green-400" /> : <Copy size={18} />}
+                </button>
+              </div>
+              
+              <div className="mt-12">
+                <a href={`mailto:${socials.email}`} className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all shadow-xl">
+                  Initiate Conversation <Send size={16} />
+                </a>
+              </div>
+            </div>
+
+            {/* SOCIALS - TAB DESIGN */}
+            <div className="flex flex-col gap-3">
+              {[
+                { label: 'LINKEDIN', icon: <Linkedin size={16} />, link: socials.linkedin },
+                { label: 'GITHUB', icon: <Github size={16} />, link: socials.github },
+                { label: 'MEDIUM', icon: <MediumIcon className="w-4 h-4" />, link: `https://medium.com/@${socials.medium}` }
+              ].map((social, i) => (
+                <a
+                  key={i}
+                  href={social.link}
+                  target="_blank"
+                  className="flex items-center justify-between p-4 rounded-2xl bg-slate-900/10 border border-slate-800/40 hover:border-blue-500/40 hover:bg-slate-900/40 transition-all group"
+                >
+                  <div className="flex items-center gap-4">
+                    <span className="text-slate-500 group-hover:text-blue-500 transition-colors">{social.icon}</span>
+                    <span className="text-slate-400 font-black text-[11px] tracking-[0.2em] group-hover:text-white transition-colors">{social.label}</span>
+                  </div>
+                  <ArrowUpRight size={14} className="text-slate-700 group-hover:text-white transition-all" />
+                </a>
+              ))}
+              
+              <a href="tel:+947XXXXXXXX" className="flex items-center gap-4 p-4 rounded-2xl bg-blue-500/5 border border-blue-500/10 hover:bg-blue-500/10 transition-all group">
+                 <Phone size={16} className="text-blue-500" />
+                 <span className="text-blue-200 font-black text-[11px] tracking-[0.2em]">+94 78 373 7040</span>
+              </a>
+            </div>
+          </div>
+
+          {/* --- SYSTEM INFO FOOTER --- */}
+          <div className="flex flex-wrap items-center justify-between gap-6 pt-10 text-slate-600 border-t border-slate-800/40 font-mono text-[9px] uppercase tracking-[0.4em]">
+             <div className="flex gap-10">
                 <div className="flex items-center gap-2">
-                   <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                   <span className="text-white text-[11px] font-bold">READY FOR HIRE</span>
+                  <Globe size={12} className="text-blue-500/50" /> <span className="text-slate-500">COLOMBO, LK</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock size={12} className="text-blue-500/50" /> <span className="text-slate-500">{time}</span>
                 </div>
              </div>
+             <div className="text-slate-700 italic">
+               © 2026 / All Rights Reserved
+             </div>
           </div>
-        </div>
-
-        {/* --- MAIN HUB GRID --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          
-          {/* EMAIL COMPONENT (Larger but Sleeker) */}
-          <div className="lg:col-span-2 p-6 rounded-3xl bg-slate-900/40 border border-slate-800/50 backdrop-blur-md flex flex-col justify-between group">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-slate-500 font-mono text-[9px] uppercase tracking-widest mb-1">Electronic Mail</p>
-                <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
-                  {socials.email}
-                </h3>
-                <p className="mt-2 text-slate-500 text-[11px] italic">Send a brief or just say hi—usually active daily.</p>
-              </div>
-              <button onClick={copyEmail} className="p-2 text-slate-500 hover:text-white transition-colors">
-                {copied ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
-              </button>
-            </div>
-            
-            <div className="mt-8">
-              <a href={`mailto:${socials.email}`} className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-xl font-bold text-[11px] uppercase tracking-wider hover:bg-blue-500 hover:text-white transition-all">
-                Initiate Conversation <Send size={14} />
-              </a>
-            </div>
-          </div>
-
-          {/* SOCIALS - SCALED DOWN TAB DESIGN */}
-          <div className="flex flex-col gap-2">
-            {[
-              { label: 'LINKEDIN', icon: <Linkedin size={14} />, link: socials.linkedin },
-              { label: 'GITHUB', icon: <Github size={14} />, link: socials.github },
-              { label: 'MEDIUM', icon: <MediumIcon className="w-3.5 h-3.5" />, link: `https://medium.com/@${socials.medium}` }
-            ].map((social, i) => (
-              <a
-                key={i}
-                href={social.link}
-                target="_blank"
-                className="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/20 border border-slate-800/40 hover:border-slate-700 hover:bg-slate-800/40 transition-all group"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-slate-500 group-hover:text-blue-500 transition-colors">{social.icon}</span>
-                  <span className="text-slate-400 font-bold text-[10px] tracking-widest group-hover:text-white transition-colors">{social.label}</span>
-                </div>
-                <ArrowUpRight size={12} className="text-slate-700 group-hover:text-white opacity-0 group-hover:opacity-100 transition-all" />
-              </a>
-            ))}
-            
-            {/* Phone as a Social Tab */}
-            <a href="tel:+947XXXXXXXX" className="flex items-center gap-3 p-3.5 rounded-2xl bg-blue-500/5 border border-blue-500/10 hover:bg-blue-500/10 transition-all group">
-               <Phone size={14} className="text-blue-500" />
-               <span className="text-blue-200 font-bold text-[10px] tracking-widest">+94 78 373 7040</span>
-            </a>
-          </div>
-        </div>
-
-        {/* --- MINIMALIST SYSTEM INFO --- */}
-        <div className="flex flex-wrap items-center justify-between gap-6 pt-6 text-slate-500 border-t border-slate-800/60 font-mono text-[9px] uppercase tracking-widest">
-           <div className="flex gap-8">
-              <div className="flex items-center gap-2">
-                <Globe size={12} /> <span className="text-slate-400">COLOMBO, LK</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock size={12} /> <span className="text-slate-400">{time}</span>
-              </div>
-           </div>
-           
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
       <AnimatePresence>
         {copied && (
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }} 
-            animate={{ opacity: 1, scale: 1 }} 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
             exit={{ opacity: 0, scale: 0.9 }} 
-            className="fixed bottom-8 right-8 z-[300] px-5 py-2.5 bg-slate-900 border border-slate-700 text-white rounded-xl text-[10px] font-bold tracking-widest flex items-center gap-3 shadow-2xl"
+            className="fixed bottom-8 right-8 z-[300] px-6 py-3 bg-slate-900 border border-slate-700 text-white rounded-2xl text-[10px] font-black tracking-widest flex items-center gap-4 shadow-2xl backdrop-blur-xl"
           >
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_10px_#22c55e]" />
+            <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_15px_#22c55e]" />
             COPIED_TO_CLIPBOARD
           </motion.div>
         )}
       </AnimatePresence>
-
     </section>
   );
 }

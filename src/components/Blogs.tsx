@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, ExternalLink, Calendar, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
+import { BookOpen, ExternalLink, Calendar, Clock, ChevronLeft, ChevronRight, PenTool, Layout } from 'lucide-react';
 
 // Swiper Imports
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -40,7 +40,6 @@ export default function Blogs({ username }: { username: string }) {
             ...item,
             thumbnail: item.thumbnail || extractImage(item.description || item.content)
           }));
-          // Always taking the 6 latest articles
           setArticles(processedArticles.slice(0, 6)); 
         }
         setLoading(false);
@@ -52,13 +51,36 @@ export default function Blogs({ username }: { username: string }) {
 
   return (
     <section id="writing" className="py-32 bg-[#030712] overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 mb-16">
-        <div className="flex flex-col items-center text-center">
-          <span className="text-blue-500 font-mono text-xs uppercase tracking-[0.3em] mb-3">Publications</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter">Latest Writing.</h2>
+      
+      {/* --- NEW DYNAMIC HEADER (LEFT ALIGNED) --- */}
+      <div className="max-w-6xl mx-auto px-6 relative mb-24 flex flex-col items-start text-left">
+        {/* Large Decorative Background Label */}
+        <span className="absolute -left-6 -top-12 text-[120px] font-black text-white/[0.02] select-none pointer-events-none hidden md:block uppercase">
+          Logs
+        </span>
+
+        <div className="flex items-center gap-3 text-blue-500 font-mono text-[10px] uppercase tracking-[0.5em] mb-6">
+          <PenTool size={14} className="text-blue-500" /> 
+          External_Feeds / Medium_v.2
+        </div>
+
+        <div className="flex flex-col md:flex-row md:items-end gap-6 w-full">
+          <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none">
+            Latest <span className="text-slate-700 italic font-light">Writing.</span>
+          </h2>
+          
+          <div className="hidden md:block flex-1 h-px bg-slate-800 mb-4 opacity-50" />
+          
+          <div className="flex items-center gap-4 px-4 py-2 bg-blue-500/5 border border-blue-500/20 rounded-xl backdrop-blur-sm">
+            <Layout size={14} className="text-blue-500" />
+            <span className="text-[10px] font-black text-blue-400 uppercase tracking-widest">
+              Live Feed
+            </span>
+          </div>
         </div>
       </div>
 
+      {/* --- CAROUSEL CONTENT (STAYS THE SAME) --- */}
       <div className="relative max-w-[1400px] mx-auto px-4">
         {loading ? (
           <div className="flex justify-center gap-6">
@@ -72,11 +94,11 @@ export default function Blogs({ username }: { username: string }) {
             grabCursor={true}
             centeredSlides={true}
             slidesPerView={'auto'}
-            loop={true} // Enable infinite loop
+            loop={true}
             autoplay={{
-              delay: 3000, // 3 seconds per slide
-              disableOnInteraction: false, // Keep playing after user swipes
-              pauseOnMouseEnter: true, // Stop when hovering so user can read
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
             }}
             coverflowEffect={{
               rotate: 0,
@@ -90,7 +112,7 @@ export default function Blogs({ username }: { username: string }) {
               prevEl: '.swiper-button-prev-blog',
             }}
             pagination={{ clickable: true }}
-            modules={[EffectCoverflow, Pagination, Navigation, Autoplay]} // Added Autoplay
+            modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
             className="blog-swiper !pb-20 !px-10"
           >
             {articles.map((post, idx) => (
@@ -114,7 +136,10 @@ export default function Blogs({ username }: { username: string }) {
 
                   <div className="p-8 flex flex-col flex-1">
                     <div className="flex items-center gap-4 text-slate-500 text-xs mb-4 font-medium">
-                      <span className="flex items-center gap-1.5"><Calendar size={14} className="text-blue-500"/> {new Date(post.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                      <span className="flex items-center gap-1.5">
+                        <Calendar size={14} className="text-blue-500"/> 
+                        {new Date(post.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                      </span>
                     </div>
                     
                     <h3 className="text-white font-bold text-xl md:text-2xl leading-tight group-hover:text-blue-400 transition-colors line-clamp-3 mb-6">
@@ -138,7 +163,6 @@ export default function Blogs({ username }: { username: string }) {
               </SwiperSlide>
             ))}
 
-            {/* Custom Navigation Arrows */}
             <div className="swiper-button-prev-blog absolute left-4 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-slate-900/90 border border-slate-800 flex items-center justify-center text-white cursor-pointer hover:bg-blue-600 hover:border-blue-500 transition-all hidden lg:flex shadow-2xl">
               <ChevronLeft size={28} />
             </div>
