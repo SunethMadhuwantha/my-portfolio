@@ -15,7 +15,7 @@ export default function Certifications({ certifications }: CertsProps) {
   const DISPLAY_LIMIT = 6;
 
   return (
-    <section id="certifications" className="max-w-6xl mx-auto px-6 py-32 bg-[#030712]">
+    <section id="certifications" className="max-w-6xl mx-auto px-6 py-8 bg-[#030712]">
       
       {/* --- NEW DYNAMIC HEADER (LEFT ALIGNED) --- */}
       <div className="relative mb-24 flex flex-col items-start text-left">

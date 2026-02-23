@@ -10,7 +10,7 @@ export default function Projects({ projects }: { projects: any[] }) {
   const LIMIT = 6;
 
   return (
-    <section id="projects" className="max-w-6xl mx-auto px-6 py-32 bg-[#030712]">
+    <section id="projects" className="max-w-6xl mx-auto px-6 py-8 bg-[#030712]">
       
       {/* --- NEW DYNAMIC HEADER --- */}
       <div className="relative mb-24 flex flex-col items-center text-center md:items-start md:text-left">

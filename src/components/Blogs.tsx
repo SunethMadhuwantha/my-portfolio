@@ -50,7 +50,7 @@ export default function Blogs({ username }: { username: string }) {
   if (!loading && articles.length === 0) return null;
 
   return (
-    <section id="writing" className="py-32 bg-[#030712] overflow-hidden">
+    <section id="writing" className="py-8 bg-[#030712] overflow-hidden">
       
       {/* --- NEW DYNAMIC HEADER (LEFT ALIGNED) --- */}
       <div className="max-w-6xl mx-auto px-6 relative mb-24 flex flex-col items-start text-left">

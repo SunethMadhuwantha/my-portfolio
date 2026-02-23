@@ -46,7 +46,7 @@ export default function Skills({ skills }: { skills: any }) {
   ];
 
   return (
-    <section id="skills" className="py-32 bg-[#030712] overflow-hidden">
+    <section id="skills" className="py-8 bg-[#030712] overflow-hidden">
       
       {/* --- HEADER (RESTORED TO PREVIOUS LARGE SIZE) --- */}
       <div className="max-w-6xl mx-auto px-6 relative mb-24 flex flex-col items-start text-left">

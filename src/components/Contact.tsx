@@ -31,7 +31,7 @@ export default function Contact({ socials }: { socials: any }) {
   );
 
   return (
-    <section id="contact" className="py-32 bg-[#030712] overflow-hidden">
+    <section id="contact" className="py-8 bg-[#030712] overflow-hidden">
       
       {/* --- NEW DYNAMIC HEADER (UNIFIED DESIGN) --- */}
       <div className="max-w-6xl mx-auto px-6 relative mb-24 flex flex-col items-start text-left">
