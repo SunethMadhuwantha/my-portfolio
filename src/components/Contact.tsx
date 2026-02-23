@@ -114,7 +114,7 @@ export default function Contact({ socials }: { socials: any }) {
                 </a>
               ))}
               
-              <a href="tel:+947XXXXXXXX" className="flex items-center gap-4 p-4 rounded-2xl bg-blue-500/5 border border-blue-500/10 hover:bg-blue-500/10 transition-all group">
+              <a href="tel:+94783737040" className="flex items-center gap-4 p-4 rounded-2xl bg-blue-500/5 border border-blue-500/10 hover:bg-blue-500/10 transition-all group">
                  <Phone size={16} className="text-blue-500" />
                  <span className="text-blue-200 font-black text-[11px] tracking-[0.2em]">+94 78 373 7040</span>
               </a>
@@ -125,7 +125,7 @@ export default function Contact({ socials }: { socials: any }) {
           <div className="flex flex-wrap items-center justify-between gap-6 pt-10 text-slate-600 border-t border-slate-800/40 font-mono text-[9px] uppercase tracking-[0.4em]">
              <div className="flex gap-10">
                 <div className="flex items-center gap-2">
-                  <Globe size={12} className="text-blue-500/50" /> <span className="text-slate-500">COLOMBO, LK</span>
+                  <Globe size={12} className="text-blue-500/50" /> <span className="text-slate-500">COLOMBO, LK </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock size={12} className="text-blue-500/50" /> <span className="text-slate-500">{time}</span>
