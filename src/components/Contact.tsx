@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Github, Linkedin, Copy, Check, Globe, Clock, Phone, ArrowUpRight, Cpu, Zap } from 'lucide-react';
+import { Mail, Github, Linkedin, Copy, Check, Globe, Clock, Phone, ArrowUpRight, Send, Hash } from 'lucide-react';
 
 export default function Contact({ socials }: { socials: any }) {
   const [copied, setCopied] = useState(false);
@@ -31,133 +31,120 @@ export default function Contact({ socials }: { socials: any }) {
   );
 
   return (
-    <section id="contact" className="max-w-6xl mx-auto px-6 py-32 relative overflow-hidden">
-      {/* Background Polish */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
+    <section id="contact" className="max-w-5xl mx-auto px-6 py-24 relative bg-[#030712]">
       
+      {/* Background Accent */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-px bg-linear-to-r from-transparent via-blue-500/20 to-transparent pointer-events-none" />
+
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="flex flex-col gap-16"
+        className="relative z-10 space-y-8"
       >
-        {/* --- SECTION HEADER --- */}
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-2 text-blue-500 font-mono text-[10px] tracking-[0.3em] uppercase">
-            <Zap size={12} className="fill-current" /> available for hire
+        {/* --- COMPACT HEADER --- */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800/60 pb-8">
+          <div>
+            <div className="flex items-center gap-2 mb-2 text-blue-500 font-mono text-[9px] uppercase tracking-[0.3em]">
+              <Hash size={10} /> Contact / Index
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
+              Let's build <span className="text-slate-500 font-light italic">something.</span>
+            </h2>
           </div>
-          <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.85]">
-            GET IN <br /> <span className="text-slate-800 outline-text">TOUCH.</span>
-          </h2>
+          <div className="flex items-center gap-6">
+             <div className="text-right">
+                <p className="text-slate-500 font-mono text-[8px] uppercase tracking-widest">Availability</p>
+                <div className="flex items-center gap-2">
+                   <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                   <span className="text-white text-[11px] font-bold">READY FOR HIRE</span>
+                </div>
+             </div>
+          </div>
         </div>
 
-        {/* --- MAIN GRID HUB --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        {/* --- MAIN HUB GRID --- */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           
-          {/* Main CTA: Email */}
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="lg:col-span-8 p-10 rounded-[2.5rem] bg-slate-900/30 border border-slate-800/50 backdrop-blur-sm flex flex-col justify-between group relative overflow-hidden"
-          >
-            <div className="absolute -right-10 -bottom-10 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity">
-              <Mail size={320} />
-            </div>
-            
-            <div>
-              <p className="text-slate-500 font-mono text-[10px] uppercase tracking-widest mb-8">Drop a message</p>
-              <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight break-all">
-                {socials.email}
-              </h3>
-            </div>
-
-            <div className="flex flex-wrap gap-4 mt-16">
-              <a href={`mailto:${socials.email}`} className="px-8 py-4 bg-white text-black rounded-2xl font-bold text-sm hover:bg-blue-500 hover:text-white transition-all">
-                Write Email
-              </a>
-              <button onClick={copyEmail} className="px-8 py-4 bg-slate-800/50 text-white rounded-2xl font-bold text-sm hover:bg-slate-700 transition-all flex items-center gap-2 border border-slate-700/50">
+          {/* EMAIL COMPONENT (Larger but Sleeker) */}
+          <div className="lg:col-span-2 p-6 rounded-3xl bg-slate-900/40 border border-slate-800/50 backdrop-blur-md flex flex-col justify-between group">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-slate-500 font-mono text-[9px] uppercase tracking-widest mb-1">Electronic Mail</p>
+                <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                  {socials.email}
+                </h3>
+                <p className="mt-2 text-slate-500 text-[11px] italic">Send a brief or just say hi—usually active daily.</p>
+              </div>
+              <button onClick={copyEmail} className="p-2 text-slate-500 hover:text-white transition-colors">
                 {copied ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
-                {copied ? "Copied" : "Copy Email"}
               </button>
             </div>
-          </motion.div>
+            
+            <div className="mt-8">
+              <a href={`mailto:${socials.email}`} className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-xl font-bold text-[11px] uppercase tracking-wider hover:bg-blue-500 hover:text-white transition-all">
+                Initiate Conversation <Send size={14} />
+              </a>
+            </div>
+          </div>
 
-          {/* Socials Block */}
-          <div className="lg:col-span-4 grid grid-cols-1 gap-4">
+          {/* SOCIALS - SCALED DOWN TAB DESIGN */}
+          <div className="flex flex-col gap-2">
             {[
-              { label: 'LinkedIn', icon: <Linkedin size={20} />, link: socials.linkedin, color: 'hover:text-blue-400' },
-              { label: 'GitHub', icon: <Github size={20} />, link: socials.github, color: 'hover:text-white' },
-              { label: 'Medium', icon: <MediumIcon className="w-5 h-5" />, link: `https://medium.com/@${socials.medium}`, color: 'hover:text-slate-200' }
+              { label: 'LINKEDIN', icon: <Linkedin size={14} />, link: socials.linkedin },
+              { label: 'GITHUB', icon: <Github size={14} />, link: socials.github },
+              { label: 'MEDIUM', icon: <MediumIcon className="w-3.5 h-3.5" />, link: `https://medium.com/@${socials.medium}` }
             ].map((social, i) => (
-              <motion.a
+              <a
                 key={i}
                 href={social.link}
                 target="_blank"
-                whileHover={{ x: 10 }}
-                className={`p-6 rounded-[2rem] bg-slate-900/30 border border-slate-800/50 flex items-center justify-between group transition-all ${social.color}`}
+                className="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/20 border border-slate-800/40 hover:border-slate-700 hover:bg-slate-800/40 transition-all group"
               >
-                <div className="flex items-center gap-4">
-                  <div className="text-slate-500 group-hover:text-inherit transition-colors">
-                    {social.icon}
-                  </div>
-                  <span className="text-white font-bold text-sm tracking-tight">{social.label}</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-slate-500 group-hover:text-blue-500 transition-colors">{social.icon}</span>
+                  <span className="text-slate-400 font-bold text-[10px] tracking-widest group-hover:text-white transition-colors">{social.label}</span>
                 </div>
-                <ArrowUpRight size={18} className="text-slate-700 group-hover:text-inherit" />
-              </motion.a>
+                <ArrowUpRight size={12} className="text-slate-700 group-hover:text-white opacity-0 group-hover:opacity-100 transition-all" />
+              </a>
             ))}
-          </div>
-        </div>
-
-        {/* --- REFINED INFO BAR (Smaller & Sleeker) --- */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-slate-800/50">
-          <div className="col-span-1">
-            <p className="text-slate-500 font-mono text-[9px] uppercase tracking-[0.2em] mb-2">Location</p>
-            <div className="flex items-center gap-2 text-white font-medium text-sm">
-              <Globe size={14} className="text-blue-500" /> Colombo, LK
-            </div>
-          </div>
-          
-          <div className="col-span-1">
-            <p className="text-slate-500 font-mono text-[9px] uppercase tracking-[0.2em] mb-2">Current Time</p>
-            <div className="flex items-center gap-2 text-white font-medium text-sm">
-              <Clock size={14} className="text-blue-500" /> {time}
-            </div>
-          </div>
-
-          <div className="col-span-2 md:col-span-2 flex md:justify-end items-center">
-            <a href="tel:+947XXXXXXXX" className="group flex items-center gap-3">
-              <div className="text-right hidden sm:block">
-                <p className="text-slate-500 font-mono text-[9px] uppercase tracking-[0.2em]">Contact Number</p>
-                <p className="text-white font-medium text-sm group-hover:text-blue-400 transition-colors">+94 7X XXX XXXX</p>
-              </div>
-              <div className="p-3 rounded-xl bg-blue-500/10 text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all">
-                <Phone size={18} />
-              </div>
+            
+            {/* Phone as a Social Tab */}
+            <a href="tel:+947XXXXXXXX" className="flex items-center gap-3 p-3.5 rounded-2xl bg-blue-500/5 border border-blue-500/10 hover:bg-blue-500/10 transition-all group">
+               <Phone size={14} className="text-blue-500" />
+               <span className="text-blue-200 font-bold text-[10px] tracking-widest">+94 78 373 7040</span>
             </a>
           </div>
         </div>
+
+        {/* --- MINIMALIST SYSTEM INFO --- */}
+        <div className="flex flex-wrap items-center justify-between gap-6 pt-6 text-slate-500 border-t border-slate-800/60 font-mono text-[9px] uppercase tracking-widest">
+           <div className="flex gap-8">
+              <div className="flex items-center gap-2">
+                <Globe size={12} /> <span className="text-slate-400">COLOMBO, LK</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock size={12} /> <span className="text-slate-400">{time}</span>
+              </div>
+           </div>
+           
+        </div>
       </motion.div>
 
-      {/* Success Notification */}
       <AnimatePresence>
         {copied && (
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }} 
             animate={{ opacity: 1, scale: 1 }} 
             exit={{ opacity: 0, scale: 0.9 }} 
-            className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[300] px-6 py-3 bg-blue-600 text-white rounded-full font-bold text-xs shadow-[0_20px_50px_rgba(37,99,235,0.3)] flex items-center gap-2 border border-blue-400/50"
+            className="fixed bottom-8 right-8 z-[300] px-5 py-2.5 bg-slate-900 border border-slate-700 text-white rounded-xl text-[10px] font-bold tracking-widest flex items-center gap-3 shadow-2xl"
           >
-            <Check size={14} /> Copied to Clipboard
+            <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_10px_#22c55e]" />
+            COPIED_TO_CLIPBOARD
           </motion.div>
         )}
       </AnimatePresence>
 
-      <style jsx>{`
-        .outline-text {
-          -webkit-text-stroke: 1px #1e293b;
-          text-stroke: 1px #1e293b;
-        }
-      `}</style>
     </section>
   );
 }

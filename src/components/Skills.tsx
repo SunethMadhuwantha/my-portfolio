@@ -9,7 +9,7 @@ import {
 } from 'react-icons/si';
 import { FaJava } from 'react-icons/fa';
 import { TbBrandCSharp } from 'react-icons/tb'; 
-import { Code2 } from 'lucide-react';
+import { Code2, Cpu, Terminal } from 'lucide-react';
 import { JSX } from 'react';
 
 const iconMap: Record<string, { icon: JSX.Element, color: string }> = {
@@ -46,41 +46,61 @@ export default function Skills({ skills }: { skills: any }) {
   ];
 
   return (
-    <section id="skills" className="py-24 bg-slate-950">
-      <div className="max-w-6xl mx-auto px-6 mb-16">
-        <div className="flex flex-col">
-          <span className="text-blue-500 font-mono text-xs uppercase tracking-[0.3em] mb-3">Expertise</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter">Tech Stack.</h2>
+    <section id="skills" className="py-32 bg-[#030712] overflow-hidden">
+      
+      {/* --- NEW DYNAMIC HEADER (LEFT ALIGNED) --- */}
+      <div className="max-w-6xl mx-auto px-6 relative mb-24 flex flex-col items-start text-left">
+        {/* Large Decorative Background Label */}
+        <span className="absolute -left-6 -top-12 text-[120px] font-black text-white/[0.02] select-none pointer-events-none hidden md:block uppercase">
+          Stack
+        </span>
+
+        <div className="flex items-center gap-3 text-blue-500 font-mono text-[10px] uppercase tracking-[0.5em] mb-6">
+          <Terminal size={14} className="text-blue-500" /> 
+          System_Capabilities / Core_v.4
+        </div>
+
+        <div className="flex flex-col md:flex-row md:items-end gap-6 w-full">
+          <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none">
+            Technical <span className="text-slate-700 italic font-light">Stack.</span>
+          </h2>
+          
+          <div className="hidden md:block flex-1 h-px bg-slate-800 mb-4 opacity-50" />
+          
+          <div className="flex items-center gap-4 px-4 py-2 bg-blue-500/5 border border-blue-500/20 rounded-xl backdrop-blur-sm">
+            <Cpu size={14} className="text-blue-500" />
+            <span className="text-[10px] font-black text-blue-400 uppercase tracking-widest">
+              Ready for Deployment
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* The Container with relative positioning for the shades */}
-      <div className="relative flex flex-col gap-8 w-full overflow-hidden">
+      {/* --- MARQUEE CONTENT --- */}
+      <div className="relative flex flex-col gap-8 w-full">
         
-        {/* Left Side Shade */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
-        
-        {/* Right Side Shade */}
-        <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
+        {/* Gradients */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-[#030712] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-[#030712] to-transparent z-10 pointer-events-none" />
 
         {rows.map((row, idx) => (
           <div key={idx} className="flex">
             <motion.div 
               animate={{ x: row.dir === -100 ? [0, -1500] : [-1500, 0] }}
-              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-              className="flex flex-nowrap gap-4 px-2"
+              transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+              className="flex flex-nowrap gap-6 px-3"
             >
-              {[...row.items, ...row.items, ...row.items, ...row.items, ...row.items].map((skill, i) => {
+              {[...row.items, ...row.items, ...row.items, ...row.items].map((skill, i) => {
                 const tech = iconMap[skill] || { icon: <Code2 size={18}/>, color: "#94a3b8" };
                 return (
                   <div 
                     key={i}
-                    className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-slate-900/40 border border-slate-800/50 backdrop-blur-sm group hover:border-blue-500/50 transition-all cursor-default"
+                    className="flex items-center gap-4 px-8 py-5 rounded-2xl bg-slate-900/20 border border-slate-800/40 backdrop-blur-md group hover:border-blue-500/40 hover:bg-slate-900/50 transition-all cursor-default"
                   >
-                    <span style={{ color: tech.color }} className="text-2xl transition-transform group-hover:scale-110">
+                    <span style={{ color: tech.color }} className="text-3xl transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12">
                       {tech.icon}
                     </span>
-                    <span className="text-slate-300 text-sm font-bold tracking-tight whitespace-nowrap">
+                    <span className="text-slate-400 text-xs font-black uppercase tracking-widest whitespace-nowrap group-hover:text-white transition-colors">
                       {skill}
                     </span>
                   </div>
