@@ -51,13 +51,13 @@ export default function Skills({ skills }: { skills: any }) {
       {/* --- HEADER (RESTORED TO PREVIOUS LARGE SIZE) --- */}
       <div className="max-w-6xl mx-auto px-6 relative mb-24 flex flex-col items-start text-left">
         {/* Restored Large Watermark */}
-        <span className="absolute -left-6 -top-12 text-[120px] font-black text-white/[0.02] select-none pointer-events-none hidden md:block uppercase">
+        <span className="absolute -left-6 -top-12 text-[120px] font-black text-white/2 select-none pointer-events-none hidden md:block uppercase">
           Stack
         </span>
 
         <div className="flex items-center gap-3 text-blue-500 font-mono text-[10px] uppercase tracking-[0.5em] mb-6">
           <Terminal size={14} className="text-blue-500" /> 
-          System_Capabilities / Core_v.4
+          System_Capabilities / 
         </div>
 
         <div className="flex flex-col md:flex-row md:items-end gap-6 w-full">
@@ -79,8 +79,8 @@ export default function Skills({ skills }: { skills: any }) {
 
       {/* --- SLEEK MICRO-CARDS (Styles preserved) --- */}
       <div className="relative flex flex-col gap-4 w-full">
-        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-[#030712] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-[#030712] to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-linear-to-r from-[#030712] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-linear-to-l from-[#030712] to-transparent z-10 pointer-events-none" />
 
         {rows.map((row, idx) => (
           <div key={idx} className="flex">

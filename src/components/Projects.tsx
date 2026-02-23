@@ -15,13 +15,13 @@ export default function Projects({ projects }: { projects: any[] }) {
       {/* --- NEW DYNAMIC HEADER --- */}
       <div className="relative mb-24 flex flex-col items-center text-center md:items-start md:text-left">
         {/* Decorative Background Element */}
-        <span className="absolute -left-4 -top-12 text-[120px] font-black text-white/[0.02] select-none pointer-events-none hidden md:block">
+        <span className="absolute -left-4 -top-12 text-[120px] font-black text-white/2 select-none pointer-events-none hidden md:block">
           02
         </span>
 
         <div className="flex items-center gap-3 text-blue-500 font-mono text-[10px] uppercase tracking-[0.5em] mb-6">
           <Code2 size={14} className="animate-pulse" /> 
-          Selected_Works / v.2024
+          Selected_Works /
         </div>
 
         <div className="flex flex-col md:flex-row md:items-end gap-6 w-full">

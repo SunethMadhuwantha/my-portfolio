@@ -20,13 +20,13 @@ export default function Certifications({ certifications }: CertsProps) {
       {/* --- NEW DYNAMIC HEADER (LEFT ALIGNED) --- */}
       <div className="relative mb-24 flex flex-col items-start text-left">
         {/* Large Decorative Background Label (Positioned Left) */}
-        <span className="absolute -left-6 -top-12 text-[120px] font-black text-white/[0.02] select-none pointer-events-none hidden md:block uppercase">
+        <span className="absolute -left-6 -top-12 text-[120px] font-black text-white/2 select-none pointer-events-none hidden md:block uppercase">
           Cert.
         </span>
 
         <div className="flex items-center gap-3 text-blue-500 font-mono text-[10px] uppercase tracking-[0.5em] mb-6">
           <ShieldCheck size={14} className="text-blue-500" /> 
-          Verified_Credentials / Sec_Log_01
+          Verified_Credentials / 
         </div>
 
         <div className="flex flex-col md:flex-row md:items-end gap-6 w-full">
@@ -110,7 +110,7 @@ export default function Certifications({ certifications }: CertsProps) {
       {/* --- MODAL --- */}
       <AnimatePresence>
         {selectedCert && (
-          <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 md:p-10">
+          <div className="fixed inset-0 z-150 flex items-center justify-center p-4 md:p-10">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setSelectedCert(null)} className="absolute inset-0 bg-black/98 backdrop-blur-xl" />
             <motion.div initial={{ scale: 0.9, opacity: 0, y: 30 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 30 }}

@@ -22,7 +22,7 @@ export default function MediumFollow({ username }: { username: string }) {
       animate={{ x: 0, opacity: 1 }}
       transition={{ delay: 1, duration: 0.5 }}
       whileHover={{ scale: 1.05, x: -5 }}
-      className="fixed right-0 top-1/2 -translate-y-1/2 z-[100] hidden lg:flex items-center gap-3 pl-4 pr-6 py-3 bg-[#0a0a0a] border-y border-l border-slate-800 rounded-l-full shadow-2xl group hover:border-white/30 transition-all"
+      className="fixed right-0 top-1/2 -translate-y-1/2 z-100 hidden lg:flex items-center gap-3 pl-4 pr-6 py-3 bg-[#0a0a0a] border-y border-l border-slate-800 rounded-l-full shadow-2xl group hover:border-white/30 transition-all"
     >
       {/* Immersive Glow Effect */}
       <div className="absolute inset-0 bg-white/5 blur-xl rounded-l-full opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -32,7 +32,7 @@ export default function MediumFollow({ username }: { username: string }) {
       </div>
       
       <div className="flex flex-col relative z-10">
-        <span className="text-[10px] uppercase tracking-[0.1em] text-slate-500 font-bold group-hover:text-slate-300 transition-colors">Follow on</span>
+        <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold group-hover:text-slate-300 transition-colors">Follow on</span>
         <span className="text-sm font-bold text-white leading-none">Medium</span>
       </div>
     </motion.a>

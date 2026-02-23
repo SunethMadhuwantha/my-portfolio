@@ -30,7 +30,7 @@ export default function Navbar({ name, socials }: { name: string, socials: any }
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8 text-sm text-slate-400">
-          <a href="#hero" className="hover:text-white transition-colors">About</a>
+          
           <a href="#projects" className="hover:text-white transition-colors">Projects</a>
           <a href="#writing" className="hover:text-white transition-colors">Blogs</a>
           <a href="#contact" className="hover:text-white transition-colors">Contact</a>

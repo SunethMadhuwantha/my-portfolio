@@ -55,13 +55,13 @@ export default function Blogs({ username }: { username: string }) {
       {/* --- NEW DYNAMIC HEADER (LEFT ALIGNED) --- */}
       <div className="max-w-6xl mx-auto px-6 relative mb-24 flex flex-col items-start text-left">
         {/* Large Decorative Background Label */}
-        <span className="absolute -left-6 -top-12 text-[120px] font-black text-white/[0.02] select-none pointer-events-none hidden md:block uppercase">
+        <span className="absolute -left-6 -top-12 text-[120px] font-black text-white/2 select-none pointer-events-none hidden md:block uppercase">
           Logs
         </span>
 
         <div className="flex items-center gap-3 text-blue-500 font-mono text-[10px] uppercase tracking-[0.5em] mb-6">
           <PenTool size={14} className="text-blue-500" /> 
-          External_Feeds / Medium_v.2
+          External_Feeds / Medium_Publications
         </div>
 
         <div className="flex flex-col md:flex-row md:items-end gap-6 w-full">
@@ -81,11 +81,11 @@ export default function Blogs({ username }: { username: string }) {
       </div>
 
       {/* --- CAROUSEL CONTENT (STAYS THE SAME) --- */}
-      <div className="relative max-w-[1400px] mx-auto px-4">
+      <div className="relative max-w-350 mx-auto px-4">
         {loading ? (
           <div className="flex justify-center gap-6">
             {[1, 2, 3].map(i => (
-              <div key={i} className="w-80 h-[450px] bg-slate-900/50 rounded-3xl animate-pulse border border-slate-800" />
+              <div key={i} className="w-80 h-112.5 bg-slate-900/50 rounded-3xl animate-pulse border border-slate-800" />
             ))}
           </div>
         ) : (
@@ -113,15 +113,15 @@ export default function Blogs({ username }: { username: string }) {
             }}
             pagination={{ clickable: true }}
             modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
-            className="blog-swiper !pb-20 !px-10"
+            className="blog-swiper pb-20! px-10!"
           >
             {articles.map((post, idx) => (
-              <SwiperSlide key={idx} className="!w-[300px] md:!w-[420px]">
+              <SwiperSlide key={idx} className="w-75! md:w-105!">
                 <a
                   href={post.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col h-[480px] bg-slate-900/20 border border-slate-800/50 rounded-[2.5rem] overflow-hidden hover:border-blue-500/50 transition-all duration-500 shadow-2xl backdrop-blur-sm"
+                  className="group flex flex-col h-120 bg-slate-900/20 border border-slate-800/50 rounded-[2.5rem] overflow-hidden hover:border-blue-500/50 transition-all duration-500 shadow-2xl backdrop-blur-sm"
                 >
                   <div className="relative h-56 w-full overflow-hidden">
                     <img 
@@ -163,10 +163,10 @@ export default function Blogs({ username }: { username: string }) {
               </SwiperSlide>
             ))}
 
-            <div className="swiper-button-prev-blog absolute left-4 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-slate-900/90 border border-slate-800 flex items-center justify-center text-white cursor-pointer hover:bg-blue-600 hover:border-blue-500 transition-all hidden lg:flex shadow-2xl">
+            <div className="swiper-button-prev-blog absolute left-4 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-slate-900/90 border border-slate-800 flex items-center justify-center text-white cursor-pointer hover:bg-blue-600 hover:border-blue-500 transition-all lg:flex shadow-2xl">
               <ChevronLeft size={28} />
             </div>
-            <div className="swiper-button-next-blog absolute right-4 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-slate-900/90 border border-slate-800 flex items-center justify-center text-white cursor-pointer hover:bg-blue-600 hover:border-blue-500 transition-all hidden lg:flex shadow-2xl">
+            <div className="swiper-button-next-blog absolute right-4 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-slate-900/90 border border-slate-800 flex items-center justify-center text-white cursor-pointer hover:bg-blue-600 hover:border-blue-500 transition-all lg:flex shadow-2xl">
               <ChevronRight size={28} />
             </div>
           </Swiper>

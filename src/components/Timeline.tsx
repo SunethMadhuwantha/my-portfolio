@@ -17,13 +17,13 @@ export default function Timeline({ experience, education }: { experience: any[],
       {/* --- NEW DYNAMIC HEADER (UNIFIED DESIGN) --- */}
       <div className="max-w-6xl mx-auto px-6 relative mb-24 flex flex-col items-start text-left">
         {/* Large Decorative Background Label */}
-        <span className="absolute -left-6 -top-12 text-[120px] font-black text-white/[0.02] select-none pointer-events-none hidden md:block uppercase">
+        <span className="absolute -left-6 -top-12 text-[120px] font-black text-white/2 select-none pointer-events-none hidden md:block uppercase">
           Path
         </span>
 
         <div className="flex items-center gap-3 text-blue-500 font-mono text-[10px] uppercase tracking-[0.5em] mb-6">
           <History size={14} className="text-blue-500" /> 
-          Registry_Logs / Career_v.3
+          Registry_Logs / Career_Timeline
         </div>
 
         <div className="flex flex-col md:flex-row md:items-end gap-6 w-full">
@@ -85,7 +85,7 @@ export default function Timeline({ experience, education }: { experience: any[],
 
               return (
                 <div key={idx} className="relative pl-10 md:pl-24 group">
-                  <div className="absolute left-[-4px] md:left-[28px] top-10 w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.8)] z-10" />
+                  <div className="absolute -left-1 md:left-7 top-10 w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.8)] z-10" />
 
                   <div className="p-8 md:p-10 rounded-[2.5rem] bg-slate-900/10 border border-slate-800/40 hover:border-blue-500/20 transition-all duration-500 relative overflow-hidden backdrop-blur-sm">
                     
@@ -159,7 +159,7 @@ export default function Timeline({ experience, education }: { experience: any[],
 
       <AnimatePresence>
         {selectedTranscript && (
-          <div className="fixed inset-0 z-[150] flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-150 flex items-center justify-center p-4">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedTranscript(null)} className="absolute inset-0 bg-black/95 backdrop-blur-xl" />
             <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="relative w-full max-w-5xl h-[85vh] bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden">
               <button onClick={() => setSelectedTranscript(null)} className="absolute top-6 right-6 z-10 p-2 text-slate-400 hover:text-white transition-colors"><X size={24}/></button>

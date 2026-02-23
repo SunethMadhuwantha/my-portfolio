@@ -36,13 +36,13 @@ export default function Contact({ socials }: { socials: any }) {
       {/* --- NEW DYNAMIC HEADER (UNIFIED DESIGN) --- */}
       <div className="max-w-6xl mx-auto px-6 relative mb-24 flex flex-col items-start text-left">
         {/* Large Decorative Background Label */}
-        <span className="absolute -left-6 -top-12 text-[120px] font-black text-white/[0.02] select-none pointer-events-none hidden md:block uppercase">
+        <span className="absolute -left-6 -top-12 text-[120px] font-black text-white/2 select-none pointer-events-none hidden md:block uppercase">
           Link
         </span>
 
         <div className="flex items-center gap-3 text-blue-500 font-mono text-[10px] uppercase tracking-[0.5em] mb-6">
           <MessageSquare size={14} className="text-blue-500" /> 
-          Comm_Channels / v.1.0
+          Say_Hi / 
         </div>
 
         <div className="flex flex-col md:flex-row md:items-end gap-6 w-full">
@@ -144,7 +144,7 @@ export default function Contact({ socials }: { socials: any }) {
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
             exit={{ opacity: 0, scale: 0.9 }} 
-            className="fixed bottom-8 right-8 z-[300] px-6 py-3 bg-slate-900 border border-slate-700 text-white rounded-2xl text-[10px] font-black tracking-widest flex items-center gap-4 shadow-2xl backdrop-blur-xl"
+            className="fixed bottom-8 right-8 z-300 px-6 py-3 bg-slate-900 border border-slate-700 text-white rounded-2xl text-[10px] font-black tracking-widest flex items-center gap-4 shadow-2xl backdrop-blur-xl"
           >
             <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_15px_#22c55e]" />
             COPIED_TO_CLIPBOARD

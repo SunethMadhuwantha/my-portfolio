@@ -1,7 +1,12 @@
 {
   "name": "Suneth Kitty",
+
   "role": "Software Engineer",
+
   "about": "Hi, I am a Software Engineer specializing in the intersection of AI-driven development and DevOps excellence. I design and develop robust software solutions, focusing on performance, clean architecture, and seamless user interaction. From automating deployment pipelines to integrating intelligent models, let’s build the future of the web—one commit at a time.",
+  
+  
+  
   "projects": [
   {
     "title": "Portfolio Site",
@@ -59,9 +64,11 @@
     "link": "https://your-task-manager.com",
     "github": "https://github.com/your-username/task-manager"
   }
-  ]
-  ,
+  ],
   
+
+
+
   "experience": [
     {
       "company": "Tech Corp",
@@ -89,13 +96,15 @@
     }
   ],
 
+
+
   "education": [
     {
       "school": "Global University",
       "degree": "B.Sc. Computer Science",
       "year": "2020 - 2024",
-      "description": "Focused on Software Engineering and Algorithms. Graduated with First Class Honors.Focused on Software Engineering and Algorit",
-      "transcript": "/docs/transcript.pdf"
+      "description": "Focused on Software Engineering and Algorithms. Graduated with First Class Honors.Focused on Software Engineering and Algorit"
+      
     },
     {
       "school": "City College",
@@ -176,6 +185,10 @@
   }
 
 ],
+
+
+
+
  "skills": {
   "languages": ["Java", "C", "C#", "Python", "JavaScript", "TypeScript", "HTML", "JSON", "CSS", "Sass"],
   "web": ["React", "Angular", "Express.js", "Node.js", "Bootstrap", "Tailwind", "MUI", "Next.js", "ASP.NET", "Spring Boot"],
@@ -184,6 +197,10 @@
   "tools": ["Git", "Postman", "Jira", "Trello", "Figma"],
   "others": ["DSA", "OOP", "Agile", "SOLID", "Design Patterns", "Microservices"]
 },
+
+
+
+
  "socials": {
   "medium": "90zuneth99",
   "github": "https://github.com/SunethMadhuwantha",
