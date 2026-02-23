@@ -108,39 +108,69 @@ export default function Certifications({ certifications }: CertsProps) {
       )}
 
       {/* --- MODAL --- */}
-      <AnimatePresence>
-        {selectedCert && (
-          <div className="fixed inset-0 z-150 flex items-center justify-center p-4 md:p-10">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              onClick={() => setSelectedCert(null)} className="absolute inset-0 bg-black/98 backdrop-blur-xl" />
-            <motion.div initial={{ scale: 0.9, opacity: 0, y: 30 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 30 }}
-              className="relative max-w-5xl w-full bg-slate-900 rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-2xl"
-            >
-              <button onClick={() => setSelectedCert(null)} className="absolute top-6 right-6 z-20 p-3 bg-black/50 rounded-full text-white hover:bg-blue-600 transition-all backdrop-blur-md border border-white/10"><X size={20}/></button>
-              
-              <div className="relative aspect-[1.414/1] w-full bg-white"> 
-                {selectedCert.fullCertificate ? (
-                  <Image src={selectedCert.fullCertificate} alt="Official Certificate" fill className="object-contain p-2" />
-                ) : (
-                  <div className="flex items-center justify-center h-full text-slate-400 font-mono text-xs uppercase">Source_Not_Found</div>
-                )}
-              </div>
+{/* --- MODAL --- */}
+<AnimatePresence>
+  {selectedCert && (
+    <div className="fixed inset-0 z-[150] flex items-center justify-center p-2 md:p-10">
+      {/* Backdrop */}
+      <motion.div 
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: 1 }} 
+        exit={{ opacity: 0 }}
+        onClick={() => setSelectedCert(null)} 
+        className="absolute inset-0 bg-black/95 backdrop-blur-md" 
+      />
 
-              <div className="p-8 md:p-10 bg-slate-900 border-t border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-8">
-                <div className="text-center md:text-left">
-                  <h4 className="text-2xl font-black text-white tracking-tighter mb-1">{selectedCert.title}</h4>
-                  <p className="text-xs font-mono text-blue-500 uppercase tracking-[0.2em] font-bold">
-                    {selectedCert.issuer} <span className="text-slate-700 mx-2">|</span> {selectedCert.date}
-                  </p>
-                </div>
-                <a href={selectedCert.verifyLink} target="_blank" className="shrink-0 px-10 py-4 bg-white text-black rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all shadow-xl flex items-center gap-3">
-                  Verify Authenticity <ExternalLink size={14}/>
-                </a>
-              </div>
-            </motion.div>
+      {/* Modal Card */}
+      <motion.div 
+        initial={{ scale: 0.95, opacity: 0 }} 
+        animate={{ scale: 1, opacity: 1 }} 
+        exit={{ scale: 0.95, opacity: 0 }}
+        className="relative w-full max-w-6xl max-h-[95vh] bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl flex flex-col"
+      >
+        {/* Close Button - Moved to corner with higher contrast */}
+        <button 
+          onClick={() => setSelectedCert(null)} 
+          className="absolute top-5 right-5 z-50 p-2 bg-white text-black rounded-full hover:bg-blue-600 hover:text-white transition-all shadow-lg"
+        >
+          <X size={24}/>
+        </button>
+        
+        {/* Image Container - This is the fix */}
+        <div className="flex-1 overflow-y-auto bg-white p-2 md:p-6 flex justify-center items-start custom-scrollbar"> 
+          {selectedCert.fullCertificate ? (
+            <div className="relative w-full min-h-full">
+               <img 
+                src={selectedCert.fullCertificate} 
+                alt="Official Certificate" 
+                className="w-full h-auto object-contain rounded-sm"
+              />
+            </div>
+          ) : (
+            <div className="flex items-center justify-center h-64 text-slate-400 font-mono text-xs uppercase">Source_Not_Found</div>
+          )}
+        </div>
+
+        {/* Footer - Slightly more compact to give image more room */}
+        <div className="p-5 md:p-8 bg-slate-900 border-t border-slate-800/50 flex flex-col sm:flex-row justify-between items-center gap-4 shrink-0">
+          <div className="text-center sm:text-left">
+            <h4 className="text-xl font-black text-white tracking-tighter">{selectedCert.title}</h4>
+            <p className="text-[10px] font-mono text-blue-500 uppercase tracking-widest font-bold">
+              {selectedCert.issuer} • {selectedCert.date}
+            </p>
           </div>
-        )}
-      </AnimatePresence>
+          <a 
+            href={selectedCert.verifyLink} 
+            target="_blank" 
+            className="w-full sm:w-auto px-8 py-3 bg-blue-600 text-white rounded-xl text-[11px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all flex items-center justify-center gap-2"
+          >
+            Verify Online <ExternalLink size={14}/>
+          </a>
+        </div>
+      </motion.div>
+    </div>
+  )}
+</AnimatePresence>
     </section>
   );
 }
