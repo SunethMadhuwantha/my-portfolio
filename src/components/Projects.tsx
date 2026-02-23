@@ -5,7 +5,7 @@ import { ChevronDown, ChevronUp, Code2, LayoutGrid } from 'lucide-react';
 import ProjectCard from './ProjectCard';
 import { Project } from '@/types';
 
-export default function Projects({ projects }: { projects: Project[] }) {
+export default function Projects({ projects }: { projects: any[] }) {
   const [showAll, setShowAll] = useState(false);
   const LIMIT = 6;
 

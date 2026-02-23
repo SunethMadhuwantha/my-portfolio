@@ -20,7 +20,7 @@ export default function Hero({ name, role, about }: HeroProps) {
       transition: {
         duration: 1,
         delay: 0.2 + i * 0.15,
-        ease: [0.21, 0.45, 0.32, 0.9],
+        ease: [0.21, 0.45, 0.32, 0.9] as const,
       },
     }),
   };
