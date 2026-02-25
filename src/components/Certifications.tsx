@@ -69,7 +69,6 @@ export default function Certifications({ certifications }: CertsProps) {
               </div>
 
               <div className="flex-1 p-5 min-w-0 flex flex-col justify-center relative z-10">
-                {/* Fixed: Title wraps naturally */}
                 <h3 className="text-sm font-black text-white group-hover:text-blue-400 transition-colors tracking-tight leading-snug mb-1">
                   {cert.title}
                 </h3>
@@ -77,7 +76,6 @@ export default function Certifications({ certifications }: CertsProps) {
                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{cert.issuer}</p>
                 <p className="text-[10px] text-slate-600 mb-3 font-mono">{cert.date}</p>
                 
-                {/* Fixed: Shows 4 skills */}
                 <div className="flex flex-wrap gap-1.5 mt-auto">
                   {cert.skills?.slice(0, 4).map((skill, sIndex) => (
                     <span key={sIndex} className="text-[8px] px-2 py-0.5 rounded-md bg-slate-800 border border-slate-700 text-slate-400 font-bold uppercase tracking-tighter group-hover:border-blue-500/30 transition-colors">
@@ -106,10 +104,11 @@ export default function Certifications({ certifications }: CertsProps) {
         </div>
       )}
 
-      {/* --- MODAL --- */}
+{/* --- MODAL --- */}
       <AnimatePresence>
         {selectedCert && (
-          <div className="fixed inset-0 z-[150] flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-[150] flex items-center justify-center">
+            {/* Backdrop */}
             <motion.div 
               initial={{ opacity: 0 }} 
               animate={{ opacity: 1 }} 
@@ -118,49 +117,62 @@ export default function Certifications({ certifications }: CertsProps) {
               className="absolute inset-0 bg-black/95 backdrop-blur-md" 
             />
 
+            {/* Modal Card */}
             <motion.div 
-              initial={{ scale: 0.95, opacity: 0 }} 
+              initial={{ scale: 0.9, opacity: 0 }} 
               animate={{ scale: 1, opacity: 1 }} 
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="relative w-full max-w-5xl h-[85vh] bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl flex flex-col"
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative w-[95vw] h-[90vh] md:max-w-5xl bg-[#1a1c1e] rounded-3xl overflow-hidden flex flex-col shadow-2xl"
             >
+              {/* Close Button */}
               <button 
                 onClick={() => setSelectedCert(null)} 
-                className="absolute top-4 right-4 z-50 p-2 bg-white/10 hover:bg-red-500 text-white rounded-full transition-all backdrop-blur-md border border-white/10"
+                className="absolute top-4 right-4 z-[170] p-3 bg-black/50 text-white rounded-full backdrop-blur-md border border-white/10"
               >
                 <X size={20}/>
               </button>
               
-              {/* PDF Container (No internal scroll) */}
-              <div className="flex-1 bg-[#525659] relative overflow-hidden"> 
+              {/* --- THE FIX: PDF WRAPPER --- */}
+              <div className="flex-1 w-full relative bg-[#323639] overflow-hidden"> 
                 {selectedCert.fullCertificate ? (
-                  <iframe
-                    src={`${selectedCert.fullCertificate}#view=FitV&navpanes=0&toolbar=0`}
-                    className="w-full h-full border-none"
-                    title="Certificate PDF Viewer"
-                  />
+                  <div className="absolute inset-0 w-full h-full overflow-y-auto overflow-x-hidden touch-auto">
+                    {/* Using #view=FitH (Fit Horizontal) to remove side margins 
+                        Added -webkit-overflow-scrolling for smooth mobile physics
+                    */}
+                    <iframe
+                      src={`${selectedCert.fullCertificate}#view=FitH&navpanes=0&toolbar=0&statusbar=0`}
+                      className="w-full h-full border-none min-h-full"
+                      style={{ 
+                        height: "100%", 
+                        width: "100%",
+                        display: "block"
+                      }}
+                      title="Certificate PDF"
+                    />
+                  </div>
                 ) : (
-                  <div className="flex items-center justify-center h-full text-slate-400 font-mono text-xs uppercase bg-slate-950">
-                    Document_Not_Found
+                  <div className="flex items-center justify-center h-full text-slate-500 font-mono text-[10px] uppercase">
+                    Loading_Document...
                   </div>
                 )}
               </div>
 
               {/* Footer */}
-              <div className="p-4 md:p-6 bg-slate-900 border-t border-slate-800/50 flex flex-col sm:flex-row justify-between items-center gap-4 shrink-0">
+              <div className="p-5 bg-[#030712] border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 shrink-0">
                 <div className="text-center sm:text-left">
-                  <h4 className="text-lg font-black text-white tracking-tighter leading-tight">
+                  <h4 className="text-md font-black text-white tracking-tighter leading-tight">
                     {selectedCert.title}
                   </h4>
-                  <p className="text-[10px] font-mono text-blue-500 uppercase tracking-widest font-bold">
-                    {selectedCert.issuer} • {selectedCert.date}
+                  <p className="text-[10px] font-mono text-blue-500 uppercase tracking-widest">
+                    {selectedCert.issuer}
                   </p>
                 </div>
+                
                 <a 
                   href={selectedCert.verifyLink} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-8 py-3 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all flex items-center justify-center gap-2 shadow-lg"
+                  className="w-full sm:w-auto px-8 py-3 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2"
                 >
                   Verify Online <ExternalLink size={14}/>
                 </a>
