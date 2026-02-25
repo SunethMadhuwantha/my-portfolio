@@ -126,62 +126,60 @@
     
 
  "certifications": [
-  {
-    "title": "AWS Cloud Practitioner",
-    "issuer": "Amazon Web Services",
-    "date": "2025-04-08",
-    "image": "/aws-badge.png",
-    "fullCertificate": "/aws-cert.png",
-    "verifyLink": "https://credly.com/...",
-    "skills": ["Cloud", "Security"]
+  
+ {
+    "title": "Amazon Elastic Container Service (AWS ECS)",
+    "issuer": "KodeKloud",
+    "date": "2026-02-25",
+    "image": "/certifications/badgeicons/kodekloud.png",
+    "fullCertificate": "/certifications/certificats/amazonecs.pdf",
+    "verifyLink": "https://learn.kodekloud.com/certificate/8a775e3a-37ff-4aad-82dd-8c7e62b3c67d",
+    "skills": ["AWS","ECS", "Fargate","Load Balancing"]
+  },
+ {
+    "title": "AWS Basics: Crash Course",
+    "issuer": "KodeKloud",
+    "date": "2025-10-01",
+    "image": "/certifications/badgeicons/kodekloud.png",
+    "fullCertificate": "/certifications/certificats/awsbasics.pdf",
+    "verifyLink": "https://learn.kodekloud.com/certificate/387d1916-9fad-4476-ba27-94af3135c027",
+    "skills": ["AWS","S3", "EC2","VPC"]
+  },
+ {
+    "title": "Version Controlling 101: From Zero to Hero",
+    "issuer": "CoDeKu DevOps Academy",
+    "date": "2025-08-07",
+    "image": "/certifications/badgeicons/codeku.png",
+    "fullCertificate": "/certifications/certificats/versionctrl.pdf",
+    "verifyLink": "https://verify.devopsacademy.online/validate/user_portal/",
+    "skills": ["Version Control", "Git", "GitHub"]
+  },
+ {
+    "title": "Kubernetes From 10000 Feet",
+    "issuer": "CoDeKu DevOps Academy",
+    "date": "2025-07-11",
+    "image": "/certifications/badgeicons/codeku.png",
+    "fullCertificate": "/certifications/certificats/kub.pdf",
+    "verifyLink": "https://verify.devopsacademy.online/validate/user_portal/",
+    "skills": ["Cloud", "Kubernetes", "K8"]
   },
   {
-    "title": "Meta Front-End Dfg ug uguuy u u u u  ugfyjfjheveloper",
-    "issuer": "Coursera",
-    "date": "2024",
-    "image": "/metalogo.png",
-    "verifyLink": "https://coursera.org/verify/...",
-    "skills": ["React", "UX Design"]
+    "title": "Cloud Computing for Absolute Beginners",
+    "issuer": "CoDeKu DevOps Academy",
+    "date": "2025-05-29",
+    "image": "/certifications/badgeicons/codeku.png",
+    "fullCertificate": "/certifications/certificats/cloudcomp.pdf",
+    "verifyLink": "https://verify.devopsacademy.online/",
+    "skills": ["Cloud", "Deployment", "AWS"]
   },
   {
-    "title": "Meta Front-End Developer",
-    "issuer": "Coursera",
-    "date": "2024",
-    "image": "/aws-badge.png",
-    "verifyLink": "https://coursera.org/verify/...",
-    "skills": ["React", "UX Design"]
-  },
-  {
-    "title": "Meta Front-End Develope gg i yu r",
-    "issuer": "Courgku u isera",
-    "date": "2024-5-10",
-    "image": "/metalogo.png",
-    "verifyLink": "https://coursera.org/verify/...",
-    "skills": ["React", "UX Design", "UX Dign", " Design", "i5689sign"]
-  },
-  {
-    "title": "Meta Front-End Dfg ug uguuyfjfgfjyfjhfjf yfjy fjhfj jfyf jf f uiu iughjEnd Dfg ug uguuyfjfgfjyfjhfjf yfjy fjhfj jfyf jf f uiu iughj yf ff ug jg g u u u u  ugfyjfjheveloper",
-    "issuer": "Coursera",
-    "date": "2024",
-    "image": "/metalogo.png",
-    "verifyLink": "https://coursera.org/verify/...",
-    "skills": ["React", "UX Design"]
-  },
-  {
-    "title": "Meta Front-End Developer",
-    "issuer": "Coursera",
-    "date": "2024",
-    "image": "/aws-badge.png",
-    "verifyLink": "https://coursera.org/verify/...",
-    "skills": ["React", "UX Design"]
-  },
-  {
-    "title": "Meta Front-End Develope gg i yu r",
-    "issuer": "Courgku u isera",
-    "date": "2024-5-10",
-    "image": "/metalogo.png",
-    "verifyLink": "https://coursera.org/verify/...",
-    "skills": ["React", "UX Design", "UX Dign", " Design", "i5689sign"]
+    "title": "Introduction to Containerization: Docker Beginners Guide",
+    "issuer": "CoDeKu DevOps Academy",
+    "date": "2025-05-21",
+    "image": "/certifications/badgeicons/codeku.png",
+    "fullCertificate": "/certifications/certificats/containerization.pdf",
+    "verifyLink": "https://verify.devopsacademy.online/",
+    "skills": ["containerization", "Docker", "Cloud"]
   }
 
 ],

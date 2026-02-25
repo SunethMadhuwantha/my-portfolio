@@ -17,9 +17,8 @@ export default function Certifications({ certifications }: CertsProps) {
   return (
     <section id="certifications" className="max-w-6xl mx-auto px-6 py-8 bg-[#030712]">
       
-      {/* --- NEW DYNAMIC HEADER (LEFT ALIGNED) --- */}
+      {/* --- HEADER --- */}
       <div className="relative mb-24 flex flex-col items-start text-left">
-        {/* Large Decorative Background Label (Positioned Left) */}
         <span className="absolute -left-6 -top-12 text-[120px] font-black text-white/2 select-none pointer-events-none hidden md:block uppercase">
           Cert.
         </span>
@@ -60,27 +59,27 @@ export default function Certifications({ certifications }: CertsProps) {
             >
               <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
-              {/* Badge Image Sidebar - Full Color Default */}
               <div className="relative w-24 shrink-0 bg-slate-950/40 border-r border-slate-800/50 overflow-hidden">
                 <Image 
                   src={cert.image} 
                   alt={cert.issuer} 
                   fill 
-                  className="object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-115" 
+                  className="object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-110" 
                 />
               </div>
 
-              {/* Info */}
               <div className="flex-1 p-5 min-w-0 flex flex-col justify-center relative z-10">
-                <h3 className="text-sm font-black text-white truncate group-hover:text-blue-400 transition-colors tracking-tight">
+                {/* Fixed: Title wraps naturally */}
+                <h3 className="text-sm font-black text-white group-hover:text-blue-400 transition-colors tracking-tight leading-snug mb-1">
                   {cert.title}
                 </h3>
                 
-                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">{cert.issuer}</p>
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{cert.issuer}</p>
                 <p className="text-[10px] text-slate-600 mb-3 font-mono">{cert.date}</p>
                 
-                <div className="flex flex-wrap gap-1.5">
-                  {cert.skills?.slice(0, 3).map((skill, sIndex) => (
+                {/* Fixed: Shows 4 skills */}
+                <div className="flex flex-wrap gap-1.5 mt-auto">
+                  {cert.skills?.slice(0, 4).map((skill, sIndex) => (
                     <span key={sIndex} className="text-[8px] px-2 py-0.5 rounded-md bg-slate-800 border border-slate-700 text-slate-400 font-bold uppercase tracking-tighter group-hover:border-blue-500/30 transition-colors">
                       {skill}
                     </span>
@@ -92,7 +91,7 @@ export default function Certifications({ certifications }: CertsProps) {
         </AnimatePresence>
       </div>
 
-      {/* --- TOGGLE BUTTON --- */}
+      {/* --- TOGGLE --- */}
       {certifications.length > DISPLAY_LIMIT && (
         <div className="mt-16 flex justify-center">
             <button 
@@ -108,69 +107,68 @@ export default function Certifications({ certifications }: CertsProps) {
       )}
 
       {/* --- MODAL --- */}
-{/* --- MODAL --- */}
-<AnimatePresence>
-  {selectedCert && (
-    <div className="fixed inset-0 z-[150] flex items-center justify-center p-2 md:p-10">
-      {/* Backdrop */}
-      <motion.div 
-        initial={{ opacity: 0 }} 
-        animate={{ opacity: 1 }} 
-        exit={{ opacity: 0 }}
-        onClick={() => setSelectedCert(null)} 
-        className="absolute inset-0 bg-black/95 backdrop-blur-md" 
-      />
+      <AnimatePresence>
+        {selectedCert && (
+          <div className="fixed inset-0 z-[150] flex items-center justify-center p-4">
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedCert(null)} 
+              className="absolute inset-0 bg-black/95 backdrop-blur-md" 
+            />
 
-      {/* Modal Card */}
-      <motion.div 
-        initial={{ scale: 0.95, opacity: 0 }} 
-        animate={{ scale: 1, opacity: 1 }} 
-        exit={{ scale: 0.95, opacity: 0 }}
-        className="relative w-full max-w-6xl max-h-[95vh] bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl flex flex-col"
-      >
-        {/* Close Button - Moved to corner with higher contrast */}
-        <button 
-          onClick={() => setSelectedCert(null)} 
-          className="absolute top-5 right-5 z-50 p-2 bg-white text-black rounded-full hover:bg-blue-600 hover:text-white transition-all shadow-lg"
-        >
-          <X size={24}/>
-        </button>
-        
-        {/* Image Container - This is the fix */}
-        <div className="flex-1 overflow-y-auto bg-white p-2 md:p-6 flex justify-center items-start custom-scrollbar"> 
-          {selectedCert.fullCertificate ? (
-            <div className="relative w-full min-h-full">
-               <img 
-                src={selectedCert.fullCertificate} 
-                alt="Official Certificate" 
-                className="w-full h-auto object-contain rounded-sm"
-              />
-            </div>
-          ) : (
-            <div className="flex items-center justify-center h-64 text-slate-400 font-mono text-xs uppercase">Source_Not_Found</div>
-          )}
-        </div>
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0 }} 
+              animate={{ scale: 1, opacity: 1 }} 
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative w-full max-w-5xl h-[85vh] bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl flex flex-col"
+            >
+              <button 
+                onClick={() => setSelectedCert(null)} 
+                className="absolute top-4 right-4 z-50 p-2 bg-white/10 hover:bg-red-500 text-white rounded-full transition-all backdrop-blur-md border border-white/10"
+              >
+                <X size={20}/>
+              </button>
+              
+              {/* PDF Container (No internal scroll) */}
+              <div className="flex-1 bg-[#525659] relative overflow-hidden"> 
+                {selectedCert.fullCertificate ? (
+                  <iframe
+                    src={`${selectedCert.fullCertificate}#view=FitV&navpanes=0&toolbar=0`}
+                    className="w-full h-full border-none"
+                    title="Certificate PDF Viewer"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center h-full text-slate-400 font-mono text-xs uppercase bg-slate-950">
+                    Document_Not_Found
+                  </div>
+                )}
+              </div>
 
-        {/* Footer - Slightly more compact to give image more room */}
-        <div className="p-5 md:p-8 bg-slate-900 border-t border-slate-800/50 flex flex-col sm:flex-row justify-between items-center gap-4 shrink-0">
-          <div className="text-center sm:text-left">
-            <h4 className="text-xl font-black text-white tracking-tighter">{selectedCert.title}</h4>
-            <p className="text-[10px] font-mono text-blue-500 uppercase tracking-widest font-bold">
-              {selectedCert.issuer} • {selectedCert.date}
-            </p>
+              {/* Footer */}
+              <div className="p-4 md:p-6 bg-slate-900 border-t border-slate-800/50 flex flex-col sm:flex-row justify-between items-center gap-4 shrink-0">
+                <div className="text-center sm:text-left">
+                  <h4 className="text-lg font-black text-white tracking-tighter leading-tight">
+                    {selectedCert.title}
+                  </h4>
+                  <p className="text-[10px] font-mono text-blue-500 uppercase tracking-widest font-bold">
+                    {selectedCert.issuer} • {selectedCert.date}
+                  </p>
+                </div>
+                <a 
+                  href={selectedCert.verifyLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-8 py-3 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  Verify Online <ExternalLink size={14}/>
+                </a>
+              </div>
+            </motion.div>
           </div>
-          <a 
-            href={selectedCert.verifyLink} 
-            target="_blank" 
-            className="w-full sm:w-auto px-8 py-3 bg-blue-600 text-white rounded-xl text-[11px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all flex items-center justify-center gap-2"
-          >
-            Verify Online <ExternalLink size={14}/>
-          </a>
-        </div>
-      </motion.div>
-    </div>
-  )}
-</AnimatePresence>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
