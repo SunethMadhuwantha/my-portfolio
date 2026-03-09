@@ -71,28 +71,27 @@
 
   "experience": [
     {
-      "company": "Tech Corp",
-      "role": "Frontend Developer",
-      "duration": "2024 - Present",
+      "company": "MetaDew Technologies",
+      "role": "Associate Software Engineer",
+      "duration": "2024 Aug - 2025 Sep",
       "description": [
-        "Developed clean user interfaces using Next.js",
-        "Optimized website performance by 40%",
-        "Developed clean uscber interfaces using Next.js",
-        "Optimized website performancjje by 40%",
-        "Collaborated with UI/UX designers"
+        "Developed and maintained hotel and restaurant management systems and client websites using the MERN stack, SQL, and Java, ensuring high performance, scalability, and seamless user experience.",
+        "Customized systems to meet client requirements, providing technical support, creating documentation, and conducting user training for effective system usage.",
+        "Participated in direct client interactions, including calls, on-site visits, and product demos with senior team members to tailor solutions and gather feedback.",
+        "Contributed to social media marketing efforts to boost the company’s global reach, engaging with both local and international clients."
       ],
-      "tech": ["React", "TypeScript", "Tailwind"]
+      "tech": ["MERN", "React.js", "Node.js", "Java", "Microservices","ASP.NET", "SQL", "MongoDB"]
     },
     {
-      "company": "Web Solutjions",
+      "company": "Pristine Solutions",
       "role": "Software Engjineer Intern",
-      "duration": "2023 - 20224",
+      "duration": "2023 jan - 2023 Jul",
       "description": [
-        "Built RESTful APIsb with Node.js and Express",
-        "Implemented authentication using JWT",
-        "Worked in an Agile team environment"
+        "Involved in the project as a full-stack developer, utilizing Angular, SAP HANA XSJS, Bootstrap, and SAPHANA Database to build a Petty Cash solution for streamlined financial processes.",
+        "Improved project efficiency through module reuse, actively participated in code reviews, and gained hands-on experience in server management, Agile methodologies, cloud platforms, CI/CD pipelines, and microservices architecture",
+        "Contributed to the development of a comprehensive Petty Cash solution, enhancing financial management processes and ensuring seamless integration with existing systems."
       ],
-      "tech": ["Nodekhk.js", "Expkress", "MongogjjjjgDB", "Expkress", "MongogjjjjgDB"]
+      "tech": ["Angular", "SAP HANA XSJS", "Bootstrap", "SAPHANA Database", "Microservices","CI/CD","Agile"]
     }
   ],
 
@@ -100,24 +99,19 @@
 
   "education": [
     {
-      "school": "Global University",
-      "degree": "B.Sc. Computer Science",
+      "school": "Faculty of Information Technology - University of Moratuwa",
+      "degree": "B.Sc. (Hons) in Information Technology",
       "year": "2020 - 2024",
-      "description": "Focused on Software Engineering and Algorithms. Graduated with First Class Honors.Focused on Software Engineering and Algorit"
+      "description": "GPA 3.21/4.00. Graduated with a Bachelor of Science (Hons) in Information Technology from the University of Moratuwa with Second Class Division . Completed a comprehensive curriculum covering software engineering, AI, data structures, algorithms, databases, web development, and cloud computing. Developed strong problem-solving skills and practical experience through projects and internships.",
+      "transcript": "/docs/highschool-transcript.pdf"
       
     },
     {
-      "school": "City College",
-      "degree": "High School Diploma",
-      "year": "2016 - 2020",
-      "description": [
-        "Built RESTful APIsb with Node.js and Express",
-        "Implemented authentication using JWT",
-        "Worked in an Agile team environment",
-        "Implemented authentication using JWT",
-        "Worked in an Agile team environment"
-      ],
-      "transcript": "/docs/highschool-transcript.pdf"
+      "school": "Royal College - Polonnaruwa",
+      "degree": "Physical Science Stream",
+      "year": "2013 O/L - 2016 A/L",
+      "description": "",
+      "transcript": ""
     }
   ],
 

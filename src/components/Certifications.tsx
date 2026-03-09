@@ -109,7 +109,7 @@ export default function Certifications({ certifications }: CertsProps) {
       {/* --- MODAL (Full Certificate + Description) --- */}
 <AnimatePresence>
   {selectedCert && (
-    <div className="fixed inset-0 z-[150] flex items-center justify-center p-0 md:p-6">
+    <div className="fixed inset-0 z-150 flex items-center justify-center p-0 md:p-6">
       {/* Backdrop */}
       <motion.div 
         initial={{ opacity: 0 }} 
@@ -125,12 +125,12 @@ export default function Certifications({ certifications }: CertsProps) {
         animate={{ y: 0, opacity: 1 }} 
         exit={{ y: "100%", opacity: 0 }}
         transition={{ type: "spring", damping: 30, stiffness: 300 }}
-        className="relative w-full h-[100dvh] md:h-auto md:max-h-[90vh] md:max-w-6xl bg-[#0a0a0c] md:rounded-3xl overflow-hidden flex flex-col shadow-2xl border border-white/5"
+        className="relative w-full h-dvh md:h-auto md:max-h-[90vh] md:max-w-6xl bg-[#0a0a0c] md:rounded-3xl overflow-hidden flex flex-col shadow-2xl border border-white/5"
       >
         {/* Close Button */}
         <button 
           onClick={() => setSelectedCert(null)} 
-          className="absolute top-4 right-4 z-[180] p-3 bg-black/50 text-white rounded-full backdrop-blur-md border border-white/10 hover:bg-red-500 transition-colors"
+          className="absolute top-4 right-4 z-180 p-3 bg-black/50 text-white rounded-full backdrop-blur-md border border-white/10 hover:bg-red-500 transition-colors"
         >
           <X size={24}/>
         </button>
