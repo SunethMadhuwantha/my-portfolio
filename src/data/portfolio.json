@@ -80,7 +80,7 @@
         "Participated in direct client interactions, including calls, on-site visits, and product demos with senior team members to tailor solutions and gather feedback.",
         "Contributed to social media marketing efforts to boost the company’s global reach, engaging with both local and international clients."
       ],
-      "tech": ["MERN", "React.js", "Node.js", "Java", "Microservices","ASP.NET", "SQL", "MongoDB"]
+      "tech": ["MERN", "React.js", "Node.js", "Java", "Microservices","ASP.NET","JWT", "SQL", "MongoDB"]
     },
     {
       "company": "Pristine Solutions",
