@@ -132,7 +132,8 @@
     "issuer": "KodeKloud",
     "date": "2026-02-25",
     "image": "/certifications/badgeicons/kodekloud.png",
-    "fullCertificate": "/certifications/certificats/amazonecs.pdf",
+    "fullCertificate": "/certifications/certificats/kodekloud-course-completion-certificate-docker.png",
+    "description": " implementing secure networking via VPC peering and S3 bucket policies.",
     "verifyLink": "https://learn.kodekloud.com/certificate/8a775e3a-37ff-4aad-82dd-8c7e62b3c67d",
     "skills": ["AWS","ECS", "Fargate","Load Balancing"]
   },

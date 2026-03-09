@@ -59,12 +59,14 @@ export default function Certifications({ certifications }: CertsProps) {
             >
               <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
+              {/* Grid Thumbnail uses the Badge Icon */}
               <div className="relative w-24 shrink-0 bg-slate-950/40 border-r border-slate-800/50 overflow-hidden">
                 <Image 
                   src={cert.image} 
                   alt={cert.issuer} 
                   fill 
                   className="object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-110" 
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
 
@@ -72,7 +74,6 @@ export default function Certifications({ certifications }: CertsProps) {
                 <h3 className="text-sm font-black text-white group-hover:text-blue-400 transition-colors tracking-tight leading-snug mb-1">
                   {cert.title}
                 </h3>
-                
                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{cert.issuer}</p>
                 <p className="text-[10px] text-slate-600 mb-3 font-mono">{cert.date}</p>
                 
@@ -104,83 +105,97 @@ export default function Certifications({ certifications }: CertsProps) {
         </div>
       )}
 
-{/* --- MODAL --- */}
-      <AnimatePresence>
-        {selectedCert && (
-          <div className="fixed inset-0 z-[150] flex items-center justify-center">
-            {/* Backdrop */}
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedCert(null)} 
-              className="absolute inset-0 bg-black/95 backdrop-blur-md" 
+      {/* --- MODAL (Full Certificate Image Version) --- */}
+      {/* --- MODAL (Full Certificate + Description) --- */}
+<AnimatePresence>
+  {selectedCert && (
+    <div className="fixed inset-0 z-[150] flex items-center justify-center p-0 md:p-6">
+      {/* Backdrop */}
+      <motion.div 
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: 1 }} 
+        exit={{ opacity: 0 }}
+        onClick={() => setSelectedCert(null)} 
+        className="absolute inset-0 bg-black/98 backdrop-blur-xl" 
+      />
+
+      {/* Modal Card */}
+      <motion.div 
+        initial={{ y: "100%", opacity: 0 }} 
+        animate={{ y: 0, opacity: 1 }} 
+        exit={{ y: "100%", opacity: 0 }}
+        transition={{ type: "spring", damping: 30, stiffness: 300 }}
+        className="relative w-full h-[100dvh] md:h-auto md:max-h-[90vh] md:max-w-6xl bg-[#0a0a0c] md:rounded-3xl overflow-hidden flex flex-col shadow-2xl border border-white/5"
+      >
+        {/* Close Button */}
+        <button 
+          onClick={() => setSelectedCert(null)} 
+          className="absolute top-4 right-4 z-[180] p-3 bg-black/50 text-white rounded-full backdrop-blur-md border border-white/10 hover:bg-red-500 transition-colors"
+        >
+          <X size={24}/>
+        </button>
+
+        {/* Content Body: Flex-col on mobile, Flex-row on desktop */}
+        <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
+          
+          {/* LEFT/TOP: Certificate Image Area */}
+          <div className="flex-[1.5] bg-slate-950 p-4 md:p-12 overflow-y-auto flex items-center justify-center border-b md:border-b-0 md:border-r border-white/5">
+            <img 
+              src={selectedCert.fullCertificate} 
+              alt={selectedCert.title} 
+              className="w-full h-auto max-h-full object-contain rounded shadow-2xl"
             />
-
-            {/* Modal Card */}
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }} 
-              animate={{ scale: 1, opacity: 1 }} 
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-[95vw] h-[90vh] md:max-w-5xl bg-[#1a1c1e] rounded-3xl overflow-hidden flex flex-col shadow-2xl"
-            >
-              {/* Close Button */}
-              <button 
-                onClick={() => setSelectedCert(null)} 
-                className="absolute top-4 right-4 z-[170] p-3 bg-black/50 text-white rounded-full backdrop-blur-md border border-white/10"
-              >
-                <X size={20}/>
-              </button>
-              
-              {/* --- THE FIX: PDF WRAPPER --- */}
-              <div className="flex-1 w-full relative bg-[#323639] overflow-hidden"> 
-                {selectedCert.fullCertificate ? (
-                  <div className="absolute inset-0 w-full h-full overflow-y-auto overflow-x-hidden touch-auto">
-                    {/* Using #view=FitH (Fit Horizontal) to remove side margins 
-                        Added -webkit-overflow-scrolling for smooth mobile physics
-                    */}
-                    <iframe
-                      src={`${selectedCert.fullCertificate}#view=FitH&navpanes=0&toolbar=0&statusbar=0`}
-                      className="w-full h-full border-none min-h-full"
-                      style={{ 
-                        height: "100%", 
-                        width: "100%",
-                        display: "block"
-                      }}
-                      title="Certificate PDF"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center h-full text-slate-500 font-mono text-[10px] uppercase">
-                    Loading_Document...
-                  </div>
-                )}
-              </div>
-
-              {/* Footer */}
-              <div className="p-5 bg-[#030712] border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 shrink-0">
-                <div className="text-center sm:text-left">
-                  <h4 className="text-md font-black text-white tracking-tighter leading-tight">
-                    {selectedCert.title}
-                  </h4>
-                  <p className="text-[10px] font-mono text-blue-500 uppercase tracking-widest">
-                    {selectedCert.issuer}
-                  </p>
-                </div>
-                
-                <a 
-                  href={selectedCert.verifyLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-8 py-3 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2"
-                >
-                  Verify Online <ExternalLink size={14}/>
-                </a>
-              </div>
-            </motion.div>
           </div>
-        )}
-      </AnimatePresence>
+
+          {/* RIGHT/BOTTOM: Details & Description */}
+          <div className="flex-1 p-6 md:p-10 bg-[#0d0d0f] overflow-y-auto flex flex-col">
+            <div className="mb-8">
+              <span className="text-blue-500 font-mono text-[10px] uppercase tracking-[0.3em] block mb-2">Detailed_Curriculum</span>
+              <h4 className="text-2xl md:text-3xl font-black text-white tracking-tighter leading-tight mb-2">
+                {selectedCert.title}
+              </h4>
+              <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+                {selectedCert.issuer} • {selectedCert.date}
+              </p>
+            </div>
+
+            {/* DESCRIPTION BOX */}
+            <div className="relative group mb-8">
+              <div className="absolute -left-4 top-0 bottom-0 w-1 bg-blue-600 rounded-full" />
+              <p className="text-slate-300 text-sm md:text-base leading-relaxed font-medium pl-2">
+                {selectedCert.description || "No description provided for this credential."}
+              </p>
+            </div>
+
+            {/* SKILLS TAGS IN POPUP */}
+            <div className="mt-auto pt-6 border-t border-white/5">
+              <span className="text-[10px] font-mono text-slate-500 uppercase block mb-4">Acquired_Skills:</span>
+              <div className="flex flex-wrap gap-2">
+                {selectedCert.skills?.map((skill, i) => (
+                  <span key={i} className="px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold rounded-lg uppercase tracking-tight">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer with Verify Button */}
+        <div className="p-5 md:p-6 bg-[#050507] border-t border-white/5 flex justify-end items-center shrink-0">
+          <a 
+            href={selectedCert.verifyLink} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-full md:w-auto px-10 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95"
+          >
+            Authenticate Credential <ExternalLink size={14}/>
+          </a>
+        </div>
+      </motion.div>
+    </div>
+  )}
+</AnimatePresence>
     </section>
   );
 }

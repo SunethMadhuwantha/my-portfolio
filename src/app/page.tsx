@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
 
-    <main className="min-h-screen bg-[#020617] text-slate-200 selection:bg-blue-500/30">
+    <main suppressHydrationWarning className="min-h-screen bg-[#020617] text-slate-200 selection:bg-blue-500/30">
 
       {/* 1. Navigation */}
 
