@@ -132,19 +132,79 @@
     "issuer": "KodeKloud",
     "date": "2026-02-25",
     "image": "/certifications/badgeicons/kodekloud.png",
-    "fullCertificate": "/certifications/certificats/kodekloud-course-completion-certificate-docker.png",
-    "description": " implementing secure networking via VPC peering and S3 bucket policies.",
-    "verifyLink": "https://learn.kodekloud.com/certificate/8a775e3a-37ff-4aad-82dd-8c7e62b3c67d",
+    "fullCertificate": "/certifications/certificats/aws-ecs.jpg",
+    "description": "Completed a learning module on Amazon Elastic Container Service (ECS) through KodeKloud. Gained an understanding of ECS fundamentals, including cluster creation, task definitions, services, and security groups. Practiced deploying and updating containerized applications, including a multi-container two-tier application using ECS and Fargate, and learned how load balancers help manage application traffic efficiently.",
+    "verifyLink": "https://learn.kodekloud.com/user/certificate/8a775e3a-37ff-4aad-82dd-8c7e62b3c67d",
     "skills": ["AWS","ECS", "Fargate","Load Balancing"]
+  },
+  {
+    "title": "100 Days of DevOps - KodeKloud Engineer ",
+    "issuer": "KodeKloud",
+    "date": "2025-12-20",
+    "image": "/certifications/badgeicons/kodekloud.png",
+    "fullCertificate": "/certifications/certificats/100days.jpg",
+    "description": "Successfully completed a '100-Day DevOps Challenge' on KodeKloud, gaining hands-on experience across the DevOps ecosystem. Worked with Linux administration, Git version control, Docker containerization, Kubernetes deployments, Jenkins CI/CD pipelines, Ansible automation, and Infrastructure as Code using Terraform with AWS services. This journey strengthened my practical skills in building, deploying, and managing modern cloud-native applications.",
+    "verifyLink": "https://engineer.kodekloud.com/certificate-verification/7ef8faac-d3cd-41de-8a84-24b47066e322",
+    "skills": ["Linux","Git", "Ansible","Terraform","AWS","Docker","Kubernetes","CI/CD"]
+  },
+   {
+    "title": "KodeKloud Engineer - Kubernetes (Level 1)",
+    "issuer": "KodeKloud",
+    "date": "2025-10-07",
+    "image": "/certifications/badgeicons/kodekloud.png",
+    "fullCertificate": "/certifications/certificats/kubernetes-kodekloud.png",
+    "description": "Completed hands-on labs on **Kubernetes** through KodeKloud, gaining practical experience deploying and managing containerized applications in a Kubernetes cluster. Practiced working with Pods, Deployments, ReplicaSets, Namespaces, and Services, along with configuring resource limits, rolling updates, rollback strategies, CronJobs, and troubleshooting deployment and volume mount issues.",
+    "verifyLink": "https://engineer.kodekloud.com/certificate-verification/d1b25d39-75e5-484c-b5a7-96dd98a3e67b",
+    "skills": ["Kubernetes","Pods", "Deployments","Services"]
+  },
+  {
+    "title": "KodeKloud Engineer - Jenkins (Level 1)",
+    "issuer": "KodeKloud",
+    "date": "2025-11-07",
+    "image": "/certifications/badgeicons/kodekloud.png",
+    "fullCertificate": "/certifications/certificats/jenkins.png",
+    "description": "Completed hands-on labs with Jenkins through KodeKloud. Practiced setting up a Jenkins server, installing and managing plugins, configuring user access and permissions, organizing jobs using folders, and creating Jenkins jobs to automate package installation tasks.",
+    "verifyLink": "https://engineer.kodekloud.com/certificate-verification/216343ec-2e84-45ee-8d28-a45f9205f192",
+    "skills": ["Jenkins","CI/CD", "Automation","DevOps"]
+  },
+  {
+    "title": "KodeKloud Engineer - Linux (Level 1)",
+    "issuer": "KodeKloud",
+    "date": "2025-10-16",
+    "image": "/certifications/badgeicons/kodekloud.png",
+    "fullCertificate": "/certifications/certificats/linux1.png",
+    "description": "Completed hands-on Linux administration labs on Linux through KodeKloud. Practiced system administration tasks including user and group management, SSH security, file permissions, secure data transfer, cron access control, firewall configuration, timezone management, process limits, backups, and SELinux installation and configuration.",
+    "verifyLink": "https://engineer.kodekloud.com/certificate-verification/49178f8d-7a72-4709-b9b0-832940b1c5d2",
+    "skills": ["Linux","CyberSecurity","SystemAdministration", "SSH","FilePermissions"]
+  },
+  {
+    "title": "KodeKloud Engineer - Git (Level 1 - 4 )",
+    "issuer": "KodeKloud",
+    "date": "2025-09-17",
+    "image": "/certifications/badgeicons/kodekloud.png",
+    "fullCertificate": "/certifications/certificats/gitkodekloud.png",
+    "description": "Completed a Git learning module on Git through KodeKloud. Gained practical experience in repository setup, managing Git repositories, using rebase, resolving merge conflicts, and working with Git hooks to automate workflows. Strengthened version control and collaboration skills for modern software development.",
+    "verifyLink": "https://engineer.kodekloud.com/certificate-verification/0d6a7902-d3a6-4844-9c44-0fc431768ab3",
+    "skills": ["Git","VersionControl", "GitRebase","GitHooks"]
+  },
+  {
+    "title": "KodeKloud Engineer - Docker (Level 1 - 4 )",
+    "issuer": "KodeKloud",
+    "date": "2025-09-04",
+    "image": "/certifications/badgeicons/kodekloud.png",
+    "fullCertificate": "/certifications/certificats/kodekloud-course-completion-certificate-docker.png",
+    "description": "Completed Docker Levels 1–4 on KodeKloud, gaining hands-on experience with containerization using Docker. The labs covered installing and managing Docker, deploying and troubleshooting containers, building images using Dockerfiles, working with networks, volumes, and port mapping, and managing image transfers.I also practiced creating multi-container environments with Docker Compose and deploying simple applications such as Nginx, Node.js, and Python apps inside Docker containers.",
+    "verifyLink": "https://engineer.kodekloud.com/certificate-verification/5fd8c407-1631-4053-8d00-2285ba29441c",
+    "skills": ["containerization","docker", "node.js","devops"]
   },
  {
     "title": "AWS Basics: Crash Course",
     "issuer": "KodeKloud",
     "date": "2025-10-01",
     "image": "/certifications/badgeicons/kodekloud.png",
-    "fullCertificate": "/certifications/certificats/awsbasics.pdf",
-    "description": " implementing secure networking via VPC peering and S3 bucket policies.",
-    "verifyLink": "https://learn.kodekloud.com/certificate/387d1916-9fad-4476-ba27-94af3135c027",
+    "fullCertificate": "/certifications/certificats/awsbasic.jpg",
+    "description": "Completed an AWS crash course covering the fundamentals of cloud computing using the AWS Management Console. Gained hands-on experience with core services including Amazon S3, Amazon EC2, and Amazon VPC. Practiced launching EC2 instances, managing storage with S3, and designing basic cloud networks using VPC with public and private subnets. Also learned key AWS concepts such as regions, availability zones, and basic security best practices.",
+    "verifyLink": "https://learn.kodekloud.com/user/certificate/387d1916-9fad-4476-ba27-94af3135c027",
     "skills": ["AWS","S3", "EC2","VPC"]
   },
  {
@@ -152,8 +212,8 @@
     "issuer": "CoDeKu DevOps Academy",
     "date": "2025-08-07",
     "image": "/certifications/badgeicons/codeku.png",
-    "fullCertificate": "/certifications/certificats/versionctrl.pdf",
-    "description": " implementing secure networking via VPC peering and S3 bucket policies.",
+    "fullCertificate": "/certifications/certificats/versionctrl.png",
+    "description": " ",
     "verifyLink": "https://verify.devopsacademy.online/validate/user_portal/",
     "skills": ["Version Control", "Git", "GitHub"]
   },
@@ -162,8 +222,8 @@
     "issuer": "CoDeKu DevOps Academy",
     "date": "2025-07-11",
     "image": "/certifications/badgeicons/codeku.png",
-    "fullCertificate": "/certifications/certificats/kub.pdf",
-    "description": " implementing secure networking via VPC peering and S3 bucket policies.",
+    "fullCertificate": "/certifications/certificats/kub10000.jpg",
+    "description": "Completed a learning module on Kubernetes fundamentals on CoDeKu, gaining an understanding of how container orchestration works in modern cloud environments.Covered key Kubernetes concepts including architecture, Pods, Services, Ingress, ConfigMaps, Secrets, Volumes, ReplicaSets, Deployments, and StatefulSets. This learning helped me understand how applications are deployed, scaled, and managed efficiently using Kubernetes.",
     "verifyLink": "https://verify.devopsacademy.online/validate/user_portal/",
     "skills": ["Cloud", "Kubernetes", "K8"]
   },
@@ -172,8 +232,8 @@
     "issuer": "CoDeKu DevOps Academy",
     "date": "2025-05-29",
     "image": "/certifications/badgeicons/codeku.png",
-    "fullCertificate": "/certifications/certificats/cloudcomp.pdf",
-    "description": " implementing secure networking via VPC peering and S3 bucket policies.",
+    "fullCertificate": "/certifications/certificats/cloudcomputing.jpg",
+    "description": "Completed a Cloud Computing fundamentals module on CoDeKu DevOps Academy. Learned the basics of traditional IT infrastructure including servers, databases, and networking, and how cloud computing transforms modern system architecture.The course covered cloud service models (IaaS, PaaS, SaaS), deployment models (Private, Public, and Hybrid Cloud), advantages of cloud computing, and an introduction to major cloud providers such as Amazon Web Services, including setting up an AWS account.",
     "verifyLink": "https://verify.devopsacademy.online/",
     "skills": ["Cloud", "Deployment", "AWS"]
   },
@@ -182,8 +242,8 @@
     "issuer": "CoDeKu DevOps Academy",
     "date": "2025-05-21",
     "image": "/certifications/badgeicons/codeku.png",
-    "fullCertificate": "/certifications/certificats/containerization.pdf",
-    "description": " implementing secure networking via VPC peering and S3 bucket policies.",
+    "fullCertificate": "/certifications/certificats/dockerbeginner.png",
+    "description": "",
     "verifyLink": "https://verify.devopsacademy.online/",
     "skills": ["containerization", "Docker", "Cloud"]
   }
