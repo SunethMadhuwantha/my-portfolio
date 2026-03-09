@@ -143,6 +143,7 @@
     "date": "2025-10-01",
     "image": "/certifications/badgeicons/kodekloud.png",
     "fullCertificate": "/certifications/certificats/awsbasics.pdf",
+    "description": " implementing secure networking via VPC peering and S3 bucket policies.",
     "verifyLink": "https://learn.kodekloud.com/certificate/387d1916-9fad-4476-ba27-94af3135c027",
     "skills": ["AWS","S3", "EC2","VPC"]
   },
@@ -152,6 +153,7 @@
     "date": "2025-08-07",
     "image": "/certifications/badgeicons/codeku.png",
     "fullCertificate": "/certifications/certificats/versionctrl.pdf",
+    "description": " implementing secure networking via VPC peering and S3 bucket policies.",
     "verifyLink": "https://verify.devopsacademy.online/validate/user_portal/",
     "skills": ["Version Control", "Git", "GitHub"]
   },
@@ -161,6 +163,7 @@
     "date": "2025-07-11",
     "image": "/certifications/badgeicons/codeku.png",
     "fullCertificate": "/certifications/certificats/kub.pdf",
+    "description": " implementing secure networking via VPC peering and S3 bucket policies.",
     "verifyLink": "https://verify.devopsacademy.online/validate/user_portal/",
     "skills": ["Cloud", "Kubernetes", "K8"]
   },
@@ -170,6 +173,7 @@
     "date": "2025-05-29",
     "image": "/certifications/badgeicons/codeku.png",
     "fullCertificate": "/certifications/certificats/cloudcomp.pdf",
+    "description": " implementing secure networking via VPC peering and S3 bucket policies.",
     "verifyLink": "https://verify.devopsacademy.online/",
     "skills": ["Cloud", "Deployment", "AWS"]
   },
@@ -179,6 +183,7 @@
     "date": "2025-05-21",
     "image": "/certifications/badgeicons/codeku.png",
     "fullCertificate": "/certifications/certificats/containerization.pdf",
+    "description": " implementing secure networking via VPC peering and S3 bucket policies.",
     "verifyLink": "https://verify.devopsacademy.online/",
     "skills": ["containerization", "Docker", "Cloud"]
   }

@@ -9,6 +9,7 @@ export interface Project {
 }
 
 export interface Certification {
+  description: string;
   title: string;
   issuer: string;
   date: string;
