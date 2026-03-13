@@ -139,7 +139,7 @@ export default function Hero({ name, role, about }: HeroProps) {
           <div className="absolute w-[80%] h-[80%] bg-blue-500/10 blur-[120px] rounded-full" />
           <div className="relative w-full h-full">
             <Image
-              src="/my.jpg"
+              src="/my.png"
               alt={name}
               fill
               className="object-contain object-bottom pointer-events-none"
