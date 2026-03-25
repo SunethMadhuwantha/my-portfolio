@@ -6,7 +6,6 @@ import { Github, Linkedin, Menu, X } from 'lucide-react';
 export default function Navbar({ name, socials }: { name: string, socials: any }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  // The high-fidelity Medium M logo you approved
   const MediumIcon = ({ size = 18 }: { size?: number }) => (
     <svg 
       viewBox="0 0 24 24" 
@@ -30,6 +29,7 @@ export default function Navbar({ name, socials }: { name: string, socials: any }
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8 text-sm text-slate-400">
+          {/* NEW About LINK */}
           
           <a href="#projects" className="hover:text-white transition-colors">Projects</a>
           <a href="#writing" className="hover:text-white transition-colors">Blogs</a>
@@ -64,7 +64,8 @@ export default function Navbar({ name, socials }: { name: string, socials: any }
             className="md:hidden bg-slate-950 border-b border-slate-800 p-6 flex flex-col gap-6"
           >
             <div className="flex flex-col gap-4 text-slate-400 font-medium">
-              <a href="#hero" onClick={() => setIsOpen(false)}>About</a>
+              {/* NEW About LINK */}
+              
               <a href="#projects" onClick={() => setIsOpen(false)}>Projects</a>
               <a href="#writing" onClick={() => setIsOpen(false)}>Blogs</a>
               <a href="#contact" onClick={() => setIsOpen(false)}>Contact</a>

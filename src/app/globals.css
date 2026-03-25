@@ -33,12 +33,12 @@ html {
   /* Hides default cursor on large screens where the custom cursor is active */
   @media (min-width: 1024px) {
     html, body {
-      cursor: none;
+      cursor: pointer !important;
     }
     
     /* Ensure interactive elements also hide the cursor */
     a, button, input, textarea {
-      cursor: none !important;
+      cursor: pointer !important;
     }
   }
 }

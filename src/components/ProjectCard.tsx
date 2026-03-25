@@ -35,16 +35,52 @@ export default function ProjectCard({ project }: { project: Project }) {
       </div>
       {/* Content Section */}
       <div className="p-5 flex flex-col flex-1">
-        <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+        <div className="flex items-start justify-between gap-3 mb-2">
+  
+  <h3 className="text-xl font-bold text-white leading-tight">
+    {project.title}
+  </h3>
+
+  <div className="flex items-center gap-2 flex-shrink-0">
+    
+    {project.link && (
+      <a
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-slate-400 hover:text-blue-400 transition"
+      >
+        🌐
+      </a>
+    )}
+
+    {project.github && (
+      <a
+        href={project.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-slate-400 hover:text-white transition"
+      >
+        <Github size={16} />
+      </a>
+    )}
+
+  </div>
+
+</div>
         <p className={`text-sm text-slate-400 ${!isExpanded && "line-clamp-2"}`}>{project.description}</p>
         <button onClick={() => setIsExpanded(!isExpanded)} className="text-xs text-blue-400 mt-2 flex items-center gap-1">
           {isExpanded ? "Less" : "More"} <ChevronDown className={isExpanded ? "rotate-180" : ""} size={12}/>
         </button>
         <div className="mt-4 flex flex-wrap gap-1.5">
+          
           {project.tech.map((tag, i) => (
             <span key={i} className="px-2 py-0.5 text-[10px] font-semibold bg-slate-800 text-slate-300 rounded border border-slate-700">{tag}</span>
           ))}
+          
+          
         </div>
+        
       </div>
     </div>
   );

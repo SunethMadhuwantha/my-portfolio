@@ -13,11 +13,11 @@
     "description": "A modern, eye-catching A real-time chat app with WebSocketA real-time chat app with WebSocketdeveloper portfolio.",
     "tech": ["Next.js", "Tailwind", "JSON","Tailwllind", "J456SON","Express"],
     "images": ["/projectcovers/project1-a.png", "/projectcovers/project1-b.png", "/projectcovers/project1-c.png"], 
-    "link": "https://your-live-demo.com",
-    "github": "https://github.com/your-username/repo"
+    "link": "https://www.youtube.com/watch?v=fJjXrOkJQB8",
+    "github": "https://github.com"
   },
   {
-    "title": "E-Commerce App",
+    "title": "E-Commerce App Monitoring and Maintenance Feature Engineering and Selection",
     "description": "A fully functional online store.",
     "tech": ["React", "Node.js", "MongoDB"],
     "images": ["/projectcovers/project2.png"],
