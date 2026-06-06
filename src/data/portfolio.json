@@ -10,11 +10,11 @@
   "projects": [
   {
     "title": "Portfolio Site",
-    "description": "A modern, eye-catching A real-time chat app with WebSocketA real-time chat app with WebSocketdeveloper portfolio.",
-    "tech": ["Next.js", "Tailwind", "JSON","Tailwllind", "J456SON","Express"],
+    "description": "A high-performance developer portfolio built with Next.js and Tailwind CSS, designed to showcase projects, technical skills, and professional experience in a modern and interactive UI. The system includes dynamic sections such as a project gallery, skills overview, and timeline, along with real-time Medium blog integration using external APIs/RSS feeds. It features responsive design, smooth animations, reusable components, and optimized rendering for fast performance across devices. Built with scalability and maintainability in mind, this portfolio acts as both a personal branding site and a dynamic content hub.",
+    "tech": ["Next.js", "Tailwind", "JSON", "Typescript","Express"],
     "images": ["/projectcovers/project1-a.png", "/projectcovers/project1-b.png", "/projectcovers/project1-c.png"], 
-    "link": "https://www.youtube.com/watch?v=fJjXrOkJQB8",
-    "github": "https://github.com"
+    "link": "https://my-portfolio-rho-five-51.vercel.app/",
+    "github": "https://github.com/SunethMadhuwantha/my-portfolio.git"
   },
   {
     "title": "E-Commerce App Monitoring and Maintenance Feature Engineering and Selection",
